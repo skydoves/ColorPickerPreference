@@ -1,6 +1,6 @@
 # ColorPickerPreference
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) <br>
-A library that let you implement ColorPicker, ColorPickerDialog, ColorPickerPreference. <br>
+A library that let you implement ColorPickerView, ColorPickerDialog, ColorPickerPreference. <br>
 Could get HSV color, RGB values, Html color code from your gallery pictures or custom images just by touching.
 
 ![gif0](https://user-images.githubusercontent.com/24237865/36075630-fc73fef8-0f94-11e8-80d1-b6f7cd4205d5.gif) 
@@ -16,7 +16,7 @@ dependencies {
 
 ## Usage
 ### ColorPickerView
-Could be used just like using ImageView and you can get color from any images.
+Could be used just like using ImageView and provides colors from any images.
 
 #### Add XML Namespace
 First add below XML Namespace inside your XML layout file.
@@ -27,7 +27,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 
 #### ColorPickerView in layout
 ```xml
-<com.skydoves.colorpickerview.ColorPickerView
+<com.skydoves.colorpickerpreference.ColorPickerView
         android:id="@+id/colorPickerView"
         android:layout_width="300dp"
         android:layout_height="300dp"
@@ -56,12 +56,119 @@ colorPickerView.setColorListener(new ColorListener() {
 ```
 
 #### ColorEnvelope
-onColorSelected method tosses a ColorEnvelope instance. <br>
-You could get HSV color, html color code, rgb from ColorEnvelope. <br>
+onColorSelected method tosses a ColorEnvelope's instance. <br>
+ColorEnvelope provides HSV color, html color code, rgb. <br>
 ```java
 colorEnvelope.getColor() // int
 colorEnvelope.getHtmlCode() // String
 colorEnvelope.getRgb() // int[3]
+```
+
+#### save and restore
+If you want to save selector's position or get selected color in the past, you should setPreferenceName to ColorPickerView. <br>
+```java
+colorPickerView.setPreferenceName("MyColorPickerView");
+```
+
+And you should save data when you want. <br>
+Then selector's position will be restored when be created ColorPickerView.
+```java
+@Override
+protected void onDestroy() {
+   super.onDestroy();
+   colorPickerView.saveData();
+ }
+```
+
+### ColorPickerDialog
+Could be used just like using AlertDialog and provides colors from any images. <br>
+It extends AlertDialog, so you could customizing themes like below.
+
+```java
+ColorPickerDialog.Builder builder = new ColorPickerDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
+builder.setTitle("ColorPicker Dialog");
+builder.setFlagView(new CustomFlag(this, R.layout.layout_flag));
+builder.setPositiveButton(getString(R.string.confirm), new ColorListener() {
+   @Override
+   public void onColorSelected(ColorEnvelope colorEnvelope) {
+      TextView textView = findViewById(R.id.textView);
+      textView.setText("#" + colorEnvelope.getHtmlCode());
+
+      LinearLayout linearLayout = findViewById(R.id.linearLayout);
+      linearLayout.setBackgroundColor(colorEnvelope.getColor());
+     }
+   });
+   builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialogInterface, int i) {
+      dialogInterface.dismiss();
+   }
+});
+builder.show();
+```
+
+#### save and restore
+If you want to save selector's position or get selected color past, you should setPreferenceName to ColorPickerView. <br>
+In case of ColorPickerDialog, colorpickerView.saveData() will be invoked automatically when PositiveButton be pressed. <br>
+Then selector's position will be restored when be created ColorPickerDialog. so just setting setPreferenceName is done.
+```java
+ColorPickerView colorPickerView = builder.getColorPickerView();
+colorPickerView.setPreferenceName("MyColorPickerDialog");
+```
+
+### ColorPickerPreference
+ColorPickerPreference is used in PreferenceScreen and shows ColorPickerDialog if be clicked.
+```xml
+<com.skydoves.colorpickerpreference.ColorPickerPreference
+    android:key="@string/ToolbarColorPickerPreference"
+    android:title="Toolbar Color"
+    android:summary="changes toolbar color"
+    app:preference_dialog_title="Toolbar ColorPickerDialog"
+    app:preference_dialog_positive="@string/confirm"
+    app:preference_dialog_negative="@string/cancel"
+    app:preference_palette="@drawable/palette"
+    app:preference_selector="@drawable/wheel"
+    app:default_color="@color/colorPrimary"/>
+```
+
+#### customizing
+If you want to customizing ColorPickerDialog in ColorPickerPreference, you could get ColorPickerDialog.Builder 
+using getColorPickerDialogBuilder() method.
+
+```java
+ColorPickerPreference colorPickerPreference_toolbar = (ColorPickerPreference) findPreference(getActivity().getString(R.string.ToolbarColorPickerPreference));
+ColorPickerDialog.Builder builder_toolbar = colorPickerPreference_toolbar.getColorPickerDialogBuilder();
+builder_toolbar.setFlagView(new CustomFlag(getActivity(), R.layout.layout_flag));
+```
+
+### FlagView
+FlagView lets you could add Flag over selector. <br>
+First, Customizing Flag layout as your taste. <br>
+Second, create CustomFlagView extending __FlagView__ like below.
+
+```java
+public class CustomFlag extends FlagView {
+
+    private TextView textView;
+    private View view;
+
+    public CustomFlag(Context context, int layout) {
+        super(context, layout);
+        textView = findViewById(R.id.flag_color_code);
+        view = findViewById(R.id.flag_color_layout);
+    }
+
+    @Override
+    public void onRefresh(int color) {
+        textView.setText("#" + String.format("%06X", (0xFFFFFF & color)));
+        view.setBackgroundColor(color);
+    }
+}
+```
+
+And the last set FlagView on ColorPickerView. 
+```java
+colorPickerView.setFlagView(new CustomFlag(this, R.layout.layout_flag));
 ```
 
 # License
