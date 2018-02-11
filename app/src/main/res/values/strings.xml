@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ColorPickerPreferenceDemo</string>
+    <string name="confirm">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="ToolbarColorPickerPreference">ToolbarColorPickerPreference</string>
+    <string name="BackgroundColorPickerPreference">BackgroundColorPickerPreference</string>
+</resources>

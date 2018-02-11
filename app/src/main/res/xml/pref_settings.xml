@@ -1,0 +1,40 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="notifications_new_message_vibrate"
+        android:title="vibrate" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="notifications_new_message_notification"
+        android:title="notification" />
+
+    <com.skydoves.colorpickerpreference.ColorPickerPreference
+        android:key="@string/ToolbarColorPickerPreference"
+        android:title="Toolbar Color"
+        android:summary="changes toolbar color"
+        app:preference_dialog_title="Toolbar ColorPickerDialog"
+        app:preference_dialog_positive="@string/confirm"
+        app:preference_dialog_negative="@string/cancel"
+        app:preference_palette="@drawable/watercolor"
+        app:preference_selector="@drawable/wheel"
+        app:default_color="@color/background"/>
+
+    <com.skydoves.colorpickerpreference.ColorPickerPreference
+        android:key="@string/BackgroundColorPickerPreference"
+        android:title="Background Color"
+        android:summary="changes background color"
+        app:preference_dialog_title="Background ColorPickerDialog"
+        app:preference_dialog_positive="@string/confirm"
+        app:preference_dialog_negative="@string/cancel"
+        app:preference_palette="@drawable/palette"
+        app:preference_selector="@drawable/wheel"
+        app:default_color="@color/background"/>
+
+    <RingtonePreference
+        android:title="github"
+        android:summary="skydoves"/>
+</PreferenceScreen>

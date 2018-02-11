@@ -1,0 +1,30 @@
+package com.skydoves.colorpickerpreferencedemo;
+
+import android.content.Context;
+import android.view.View;
+import android.widget.TextView;
+
+import com.skydoves.colorpickerpreference.FlagView;
+
+/**
+ * Developed by skydoves on 2018-02-11.
+ * Copyright (c) 2018 skydoves rights reserved.
+ */
+
+public class CustomFlag extends FlagView {
+
+    private TextView textView;
+    private View view;
+
+    public CustomFlag(Context context, int layout) {
+        super(context, layout);
+        textView = findViewById(R.id.flag_color_code);
+        view = findViewById(R.id.flag_color_layout);
+    }
+
+    @Override
+    public void onRefresh(int color) {
+        textView.setText("#" + String.format("%06X", (0xFFFFFF & color)));
+        view.setBackgroundColor(color);
+    }
+}

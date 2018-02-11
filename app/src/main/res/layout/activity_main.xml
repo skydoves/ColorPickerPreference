@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/layout_background"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="3.2"
+        android:padding="15dp">
+
+        <com.skydoves.elasticviews.ElasticLayout
+            android:onClick="example0"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layout_backgroundColor="@color/background800"
+            app:button_duration="150"
+            app:button_scale="0.8"
+            app:layout_round="20">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:padding="5dp"
+                android:layout_centerInParent="true"
+                android:textStyle="bold"
+                android:textSize="21sp"
+                android:text="ColorPicker Example"/>
+        </com.skydoves.elasticviews.ElasticLayout>
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"/>
+
+        <com.skydoves.elasticviews.ElasticLayout
+            android:onClick="example1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layout_backgroundColor="@color/background800"
+            app:button_duration="150"
+            app:button_scale="0.8"
+            app:layout_round="20">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:padding="5dp"
+                android:layout_centerInParent="true"
+                android:textStyle="bold"
+                android:textSize="21sp"
+                android:text="ColorPickerDialog Example"/>
+        </com.skydoves.elasticviews.ElasticLayout>
+
+        <android.support.v4.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"/>
+
+        <com.skydoves.elasticviews.ElasticLayout
+            android:onClick="example2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layout_backgroundColor="@color/background800"
+            app:button_duration="150"
+            app:button_scale="0.8"
+            app:layout_round="20">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:padding="5dp"
+                android:layout_centerInParent="true"
+                android:textStyle="bold"
+                android:textSize="21sp"
+                android:text="ColorPreference Example"/>
+        </com.skydoves.elasticviews.ElasticLayout>
+    </LinearLayout>
+</LinearLayout>
