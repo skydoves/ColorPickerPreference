@@ -19,9 +19,9 @@
         app:preference_dialog_title="Toolbar ColorPickerDialog"
         app:preference_dialog_positive="@string/confirm"
         app:preference_dialog_negative="@string/cancel"
-        app:preference_palette="@drawable/watercolor"
+        app:preference_palette="@drawable/palette"
         app:preference_selector="@drawable/wheel"
-        app:default_color="@color/background"/>
+        app:default_color="@color/colorPrimary"/>
 
     <com.skydoves.colorpickerpreference.ColorPickerPreference
         android:key="@string/BackgroundColorPickerPreference"
@@ -30,7 +30,7 @@
         app:preference_dialog_title="Background ColorPickerDialog"
         app:preference_dialog_positive="@string/confirm"
         app:preference_dialog_negative="@string/cancel"
-        app:preference_palette="@drawable/palette"
+        app:preference_palette="@drawable/watercolor"
         app:preference_selector="@drawable/wheel"
         app:default_color="@color/background"/>
 

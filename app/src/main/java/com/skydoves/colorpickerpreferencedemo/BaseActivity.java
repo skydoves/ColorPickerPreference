@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -48,13 +49,13 @@ public class BaseActivity extends AppCompatActivity {
 
     public void setToolbarColor() {
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setBackgroundColor(sharedPreferences.getInt(getString(R.string.ToolbarColorPickerPreference), R.color.colorPrimary));
+        toolbar.setBackgroundColor(sharedPreferences.getInt(getString(R.string.ToolbarColorPickerPreference), ContextCompat.getColor(getBaseContext(), R.color.colorPrimary)));
     }
 
     public void setBackgroundColor() {
         View view = findViewById(R.id.layout_background);
         if(view != null) {
-            view.setBackgroundColor(sharedPreferences.getInt(getString(R.string.BackgroundColorPickerPreference), R.color.background));
+            view.setBackgroundColor(sharedPreferences.getInt(getString(R.string.BackgroundColorPickerPreference),  ContextCompat.getColor(getBaseContext(), R.color.background)));
         }
     }
 }

@@ -258,11 +258,12 @@ public class ColorPickerView extends FrameLayout {
         removeView(selector);
         addView(selector);
 
-        if(flagMode != FlagMode.NONE && flagView != null)
+        if(flagMode != FlagMode.NONE && flagView != null) {
+            removeView(flagView);
             addView(flagView);
+        }
 
-        selector.setX(getMeasuredWidth()/2 - getSelectorHalfWidth());
-        selector.setY(getMeasuredHeight()/2 - getSelectorHalfHeight());
+        selectCenter();
     }
 
     public void setFlagView(FlagView flagView) {
@@ -285,6 +286,7 @@ public class ColorPickerView extends FrameLayout {
         selectedPoint = new Point(x, y);
         lastSelectedColor = getColorFromBitmap(x, y);
         fireColorListener();
+        handleFlagView(new Point(x - getSelectorHalfWidth(), y - getSelectorHalfHeight()));
     }
 
     public void setFlipable(boolean flipable) {
