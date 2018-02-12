@@ -1,5 +1,6 @@
 # ColorPickerPreference
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) <br>
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Build Status](https://travis-ci.org/skydoves/ColorPickerPreference.svg?branch=master)](https://travis-ci.org/skydoves/ColorPickerPreference) <br>
 A library that let you implement ColorPickerView, ColorPickerDialog, ColorPickerPreference. <br>
 Could get HSV color, RGB values, Html color code from your gallery pictures or custom images just by touching.
 
@@ -225,6 +226,45 @@ You could set FlagView's showing mode.
 colorPickerView.setFlagMode(FlagMode.ALWAYS); // showing always flagView
 colorPickerView.setFlagMode(FlagMode.LAST); // showing flagView when touch Action_UP
 ```
+
+### Methods
+#### ColorPickerView
+Methods | Return | Description
+--- | --- | ---
+setColorListener(ColorListener colorlistener) | void | sets ColorListener on ColorPickerView
+setPaletteDrawable(Drawable drawable) | void | changes palette drawable resource
+setSelectorDrawable(Drawable drawable) | void | changes selector drawable resource
+setSelectorPoint(int x, int y) | void | selects selector at point(x, y)
+selectCenter() | void | selects center of palette image
+setACTION\_UP(Boolean) | void | ColorListener be invoked when ACTION\_UP
+setFlagView(FlagView flagview) | void | sets FlagView on ColorPickerView
+setFlagMode(FlagMode flagMode) | void | sets FlagMode on ColorPickerView
+setFlipable(boolean flipable) | void | sets FlagView be flipbed when go out the ColorPickerView
+saveData() | void | save data at local preference. <br> In case of ColorPickerDialog, automatically be invoked when positive button be selected
+setPreferenceName(String name) | void | set ColorPicker's preference name. It lets could save and restore selector's positions and the last color
+getColor() | int | returns the last selected color
+getColorHtml() | String | returns the last selected Html color code
+getColorRGB() | int[3] | returns the last selected color's R/G/B int array
+getColorEnvelope() | ColorEnvelope | returns ColorEnvelope. It has the last selected Color, Html, RGB values
+getSelectedPoint() | Point | returns the last selected point
+getSavedColor(int defaultColor) | int | returns the last saved color
+getSavedColorHtml(int defaultColor) | String | returns the last saved Html color code
+getSavedColorRGB(int defaultColor) | int[3] | returns the last saved color R/G/B int array
+
+#### ColorPickerDialog.Builder
+Methods | Return | Description
+--- | --- | ---
+setPreferenceName(String name) | void | set ColorPicker's preference name. It lets could save and restore selector's positions and the last color
+setFlagView(FlagView flagview) | void | sets FlagView on ColorPickerView
+setPositiveButton(CharSequence text, ColorListener colorlistener) | void | sets positive button on ColorPickerDialog
+getColorPickerView() | ColorPickerView | returns ColorPickerDialog's ColorPickerView. it lets could customizing or settings ColorPickerView
+
+#### ColorPickerPreference
+Methods | Return | Description
+--- | --- | ---
+setColorPickerDialogBuilder(ColorPickerDialog.Builder builder) | void | sets ColorPickerDialog.Builder as your own build
+getColorPickerDialogBuilder() | ColorPickerDialog.Builder | returns ColorPickerDialog.Builder
+
 
 # License
 ```xml
