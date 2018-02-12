@@ -29,12 +29,13 @@ public class ColorPickerDialogActivity extends BaseActivity {
 
         ColorPickerDialog.Builder builder = new ColorPickerDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
         builder.setTitle("ColorPicker Dialog");
+        builder.setPreferenceName("MyColorPickerDialog");
         builder.setFlagView(new CustomFlag(this, R.layout.layout_flag));
         builder.setPositiveButton(getString(R.string.confirm), new ColorListener() {
             @Override
             public void onColorSelected(ColorEnvelope colorEnvelope) {
                 TextView textView = findViewById(R.id.textView);
-                textView.setText("#" + colorEnvelope.getHtmlCode());
+                textView.setText("#" + colorEnvelope.getColorHtml());
 
                 LinearLayout linearLayout = findViewById(R.id.linearLayout);
                 linearLayout.setBackgroundColor(colorEnvelope.getColor());
@@ -46,17 +47,19 @@ public class ColorPickerDialogActivity extends BaseActivity {
                 dialogInterface.dismiss();
             }
         });
+
+        alertDialog = builder.create();
+
+        /**
+         * get ColorPicker from builder, and set views as saved data
+         */
         ColorPickerView colorPickerView = builder.getColorPickerView();
-        colorPickerView.setPreferenceName("MyColorPickerDialog");
-        colorPickerView.setFlagView(new CustomFlag(this, R.layout.layout_flag));
 
         TextView textView = findViewById(R.id.textView);
-        textView.setText("#" + colorPickerView.getSavedHtml(R.color.colorAccent));
+        textView.setText("#" + colorPickerView.getSavedColorHtml(R.color.colorAccent));
 
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
         linearLayout.setBackgroundColor(colorPickerView.getSavedColor(R.color.colorAccent));
-
-        alertDialog = builder.create();
     }
 
     public void showDialog(View view) {

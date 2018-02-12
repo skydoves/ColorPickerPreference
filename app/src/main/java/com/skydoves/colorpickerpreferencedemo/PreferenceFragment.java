@@ -20,6 +20,9 @@ public class PreferenceFragment extends android.preference.PreferenceFragment {
         initColorPickerPreference();
     }
 
+    /**
+     * customizing ColorPreference's ColorPickerDialog
+     */
     private void initColorPickerPreference() {
         ColorPickerPreference colorPickerPreference_toolbar = (ColorPickerPreference) findPreference(getActivity().getString(R.string.ToolbarColorPickerPreference));
         ColorPickerDialog.Builder builder_toolbar = colorPickerPreference_toolbar.getColorPickerDialogBuilder();
@@ -29,5 +32,6 @@ public class PreferenceFragment extends android.preference.PreferenceFragment {
         ColorPickerDialog.Builder builder_background = colorPickerPreference_background.getColorPickerDialogBuilder();
         builder_background.setFlagView(new CustomFlag(getActivity(), R.layout.layout_flag));
         builder_background.getColorPickerView().setFlipable(false);
+        builder_background.getColorPickerView().setACTON_UP(true);
     }
 }

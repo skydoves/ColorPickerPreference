@@ -31,7 +31,7 @@ public class ColorPickerViewActivity extends BaseActivity {
 
         colorPickerView = findViewById(R.id.colorPickerView);
         colorPickerView.setFlagView(new CustomFlag(this, R.layout.layout_flag));
-        colorPickerView.setPreferenceName("MyColorPickerView");
+        colorPickerView.setPreferenceName("MyColorPickerView"); // set PreferenceName, and restore
         colorPickerView.setColorListener(new ColorListener() {
             @Override
             public void onColorSelected(ColorEnvelope colorEnvelope) {
@@ -88,6 +88,9 @@ public class ColorPickerViewActivity extends BaseActivity {
         colorPickerView.setSelectorPoint(x, y);
     }
 
+    /**
+     * save selector's positions & the last select color
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();

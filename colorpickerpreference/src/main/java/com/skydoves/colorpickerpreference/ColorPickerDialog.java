@@ -83,6 +83,10 @@ public class ColorPickerDialog extends AlertDialog {
             super.setView(view);
         }
 
+        public void setPreferenceName(String preferenceName) {
+            this.colorPickerView.setPreferenceName(preferenceName);
+        }
+
         public void setFlagView(FlagView flagView) {
             this.colorPickerView.setFlagView(flagView);
         }

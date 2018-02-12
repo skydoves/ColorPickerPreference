@@ -32,11 +32,11 @@ public class ColorEnvelope {
         return this.color;
     }
 
-    public String getHtmlCode() {
+    public String getColorHtml() {
         return this.htmlCode;
     }
 
-    public int[] getRgb() {
+    public int[] getColorRGB() {
         return this.rgb;
     }
 }

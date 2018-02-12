@@ -44,5 +44,5 @@ public abstract class FlagView extends RelativeLayout {
         setVisibility(View.GONE);
     }
 
-    public abstract void onRefresh(int color);
+    public abstract void onRefresh(ColorEnvelope colorEnvelope);
 }

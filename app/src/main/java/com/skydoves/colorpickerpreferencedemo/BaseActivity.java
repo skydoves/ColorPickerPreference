@@ -47,11 +47,17 @@ public class BaseActivity extends AppCompatActivity {
         setBackgroundColor();
     }
 
+    /**
+     * set toolbar color from DefaultSharedPreferences(PreferenceScreen)
+     */
     public void setToolbarColor() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setBackgroundColor(sharedPreferences.getInt(getString(R.string.ToolbarColorPickerPreference), ContextCompat.getColor(getBaseContext(), R.color.colorPrimary)));
     }
 
+    /**
+     * set background color from DefaultSharedPreferences(PreferenceScreen)
+     */
     public void setBackgroundColor() {
         View view = findViewById(R.id.layout_background);
         if(view != null) {
