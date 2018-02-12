@@ -1,10 +1,17 @@
 package com.skydoves.colorpickerpreferencedemo;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.skydoves.colorpickerpreference.ColorEnvelope;
+import com.skydoves.colorpickerpreference.ColorListener;
 import com.skydoves.colorpickerpreference.ColorPickerDialog;
 import com.skydoves.colorpickerpreference.ColorPickerPreference;
+import com.skydoves.colorpickerpreference.ColorPickerView;
 
 /**
  * Developed by skydoves on 2018-02-11.
@@ -29,9 +36,28 @@ public class PreferenceFragment extends android.preference.PreferenceFragment {
         builder_toolbar.setFlagView(new CustomFlag(getActivity(), R.layout.layout_flag));
 
         ColorPickerPreference colorPickerPreference_background = (ColorPickerPreference) findPreference(getActivity().getString(R.string.BackgroundColorPickerPreference));
-        ColorPickerDialog.Builder builder_background = colorPickerPreference_background.getColorPickerDialogBuilder();
-        builder_background.setFlagView(new CustomFlag(getActivity(), R.layout.layout_flag));
-        builder_background.getColorPickerView().setFlipable(false);
-        builder_background.getColorPickerView().setACTON_UP(true);
+        colorPickerPreference_background.setColorPickerDialogBuilder(getCustomBuilder());
+    }
+
+    private ColorPickerDialog.Builder getCustomBuilder() {
+        ColorPickerDialog.Builder builder = new ColorPickerDialog.Builder(getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_DARK);
+        builder.setTitle("ColorPicker Dialog");
+        builder.setFlagView(new CustomFlag(getActivity(), R.layout.layout_flag));
+        builder.setPositiveButton(getString(R.string.confirm), new ColorListener() {
+            @Override
+            public void onColorSelected(ColorEnvelope colorEnvelope) {
+
+            }
+        });
+        builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        builder.getColorPickerView().setFlipable(false);
+        builder.getColorPickerView().setFlagMode(ColorPickerView.FlagMode.LAST);
+        return builder;
     }
 }

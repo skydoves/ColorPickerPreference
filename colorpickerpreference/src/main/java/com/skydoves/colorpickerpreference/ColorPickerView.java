@@ -50,7 +50,7 @@ public class ColorPickerView extends FrameLayout {
 
     protected ColorListener mColorListener;
 
-    public enum FlagMode {ALWAYS, LAST, NONE}
+    public enum FlagMode {ALWAYS, LAST}
     private FlagMode flagMode = FlagMode.ALWAYS;
 
     private boolean flipable = true;
@@ -154,6 +154,7 @@ public class ColorPickerView extends FrameLayout {
                         selector.setPressed(true);
                         return onTouchReceived(event);
                     case MotionEvent.ACTION_MOVE:
+                        if(flagView != null && flagMode == FlagMode.LAST) flagView.gone();
                         selector.setPressed(true);
                         return onTouchReceived(event);
                     case MotionEvent.ACTION_UP:
@@ -224,16 +225,15 @@ public class ColorPickerView extends FrameLayout {
     }
 
     private void handleFlagView(Point centerPoint) {
-        if (flagView != null && (flagMode == FlagMode.ALWAYS || flagMode == FlagMode.LAST)) {
+        if (flagView != null) {
+            if(flagMode == FlagMode.ALWAYS) flagView.visible();
             if(centerPoint.y - flagView.getHeight() > 0) {
                 flagView.setRotation(0);
-                if (flagView.getVisibility() == View.GONE) flagView.visible();
                 flagView.setX(centerPoint.x - flagView.getWidth() / 2 + selector.getWidth() / 2);
                 flagView.setY(centerPoint.y - flagView.getHeight());
                 flagView.onRefresh(getColorEnvelope());
             } else if(getFilpable()) {
                 flagView.setRotation(180);
-                if (flagView.getVisibility() == View.GONE) flagView.visible();
                 flagView.setX(centerPoint.x - flagView.getWidth() / 2 + selector.getWidth() / 2);
                 flagView.setY(centerPoint.y + flagView.getHeight() - selector.getHeight() / 2);
                 flagView.onRefresh(getColorEnvelope());
@@ -255,7 +255,7 @@ public class ColorPickerView extends FrameLayout {
         removeView(selector);
         addView(selector);
 
-        if(flagMode != FlagMode.NONE && flagView != null) {
+        if(flagView != null) {
             removeView(flagView);
             addView(flagView);
         }
@@ -267,6 +267,10 @@ public class ColorPickerView extends FrameLayout {
         flagView.gone();
         addView(flagView);
         this.flagView = flagView;
+    }
+
+    public void setFlagMode(FlagMode flagMode) {
+        this.flagMode = flagMode;
     }
 
     public void setSelectorDrawable(Drawable drawable) {
@@ -349,6 +353,14 @@ public class ColorPickerView extends FrameLayout {
 
     public ColorEnvelope getColorEnvelope() {
         return new ColorEnvelope(getColor(), getColorHtml(), getColorRGB());
+    }
+
+    public FlagView getFlagView() {
+        return this.flagView;
+    }
+
+    public FlagMode getFlagMode() {
+        return this.flagMode;
     }
 
     public boolean getFilpable() {

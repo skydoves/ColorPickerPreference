@@ -27,5 +27,4 @@
         android:ellipsize="end"
         android:textAppearance="?android:attr/textAppearanceSmall"
         tools:text="#ffffff"/>
-
 </LinearLayout>

@@ -77,32 +77,7 @@ public class ColorPickerPreference extends Preference {
 
     private void onInit() {
         setWidgetLayoutResource(R.layout.layout_colorpicker_preference);
-
-        ColorPickerDialog.Builder builder = new ColorPickerDialog.Builder(getContext());
-        builder.setTitle(title);
-        builder.setPositiveButton(positive, new ColorListener() {
-            @Override
-            public void onColorSelected(ColorEnvelope colorEnvelope) {
-                if(colorBox != null) {
-                    colorBox.setBackgroundColor(colorEnvelope.getColor());
-                    getPreferenceManager().getSharedPreferences().edit().putInt(getKey(), colorEnvelope.getColor()).apply();
-                }
-            }
-        });
-        builder.setNegativeButton(negative, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }
-        });
-
-        ColorPickerView colorPickerView = builder.getColorPickerView();
-        colorPickerView.setPaletteDrawable(paletteDrawable);
-        colorPickerView.setSelectorDrawable(selectorDrawable);
-        colorPickerView.setPreferenceName(getKey());
-
-        this.builder = builder;
-        this.alertDialog = builder.create();
+        setColorPickerDialogBuilder(new ColorPickerDialog.Builder(getContext()));
     }
 
     @Override
@@ -123,6 +98,27 @@ public class ColorPickerPreference extends Preference {
 
     public void setColorPickerDialogBuilder(ColorPickerDialog.Builder builder) {
         this.builder = builder;
+        this.builder.setTitle(title);
+        this.builder.setPositiveButton(positive, new ColorListener() {
+            @Override
+            public void onColorSelected(ColorEnvelope colorEnvelope) {
+                if(colorBox != null) {
+                    colorBox.setBackgroundColor(colorEnvelope.getColor());
+                    getPreferenceManager().getSharedPreferences().edit().putInt(getKey(), colorEnvelope.getColor()).apply();
+                }
+            }
+        });
+        this.builder.setNegativeButton(negative, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        ColorPickerView colorPickerView = builder.getColorPickerView();
+        colorPickerView.setPaletteDrawable(paletteDrawable);
+        colorPickerView.setSelectorDrawable(selectorDrawable);
+        colorPickerView.setPreferenceName(getKey());
         this.alertDialog = builder.create();
     }
 
