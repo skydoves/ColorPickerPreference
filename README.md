@@ -4,8 +4,8 @@
 A library that let you implement ColorPickerView, ColorPickerDialog, ColorPickerPreference. <br>
 Could get HSV color, RGB values, Html color code from your gallery pictures or custom images just by touching.
 
-![gif0](https://user-images.githubusercontent.com/24237865/36075630-fc73fef8-0f94-11e8-80d1-b6f7cd4205d5.gif) 
-![gif1](https://user-images.githubusercontent.com/24237865/36075656-5a91178c-0f95-11e8-8d19-01d3fe00849e.gif)
+![screenshot](https://user-images.githubusercontent.com/24237865/36096666-9e9fc7ca-103a-11e8-9a1a-e1d685d000f9.png)
+![gif](https://user-images.githubusercontent.com/24237865/36096667-9ec6693e-103a-11e8-8ed8-1d99da83c9ac.gif)
 
 ## Including in your project
 #### build.gradle
