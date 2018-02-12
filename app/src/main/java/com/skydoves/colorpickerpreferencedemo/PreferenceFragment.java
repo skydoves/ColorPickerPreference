@@ -12,6 +12,7 @@ import com.skydoves.colorpickerpreference.ColorListener;
 import com.skydoves.colorpickerpreference.ColorPickerDialog;
 import com.skydoves.colorpickerpreference.ColorPickerPreference;
 import com.skydoves.colorpickerpreference.ColorPickerView;
+import com.skydoves.colorpickerpreference.FlagMode;
 
 /**
  * Developed by skydoves on 2018-02-11.
@@ -57,7 +58,7 @@ public class PreferenceFragment extends android.preference.PreferenceFragment {
         });
 
         builder.getColorPickerView().setFlipable(false);
-        builder.getColorPickerView().setFlagMode(ColorPickerView.FlagMode.LAST);
+        builder.getColorPickerView().setFlagMode(FlagMode.LAST);
         return builder;
     }
 }

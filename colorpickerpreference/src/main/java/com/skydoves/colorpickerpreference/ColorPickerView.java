@@ -50,7 +50,6 @@ public class ColorPickerView extends FrameLayout {
 
     protected ColorListener mColorListener;
 
-    public enum FlagMode {ALWAYS, LAST}
     private FlagMode flagMode = FlagMode.ALWAYS;
 
     private boolean flipable = true;
