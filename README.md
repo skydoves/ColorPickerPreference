@@ -10,7 +10,7 @@ Could get HSV color, RGB values, Html color code from your gallery pictures or c
 #### build.gradle
 ```java
 dependencies {
-  compile 'com.github.skydoves:colorpickerpreference:1.0.1'
+  compile 'com.github.skydoves:colorpickerpreference:1.0.2'
 }
 ```
 
@@ -65,13 +65,15 @@ colorEnvelope.getRgb() // int[3]
 ```
 
 #### save and restore
-If you want to save selector's position or get selected color in the past, you should setPreferenceName to ColorPickerView. <br>
+If you want to save selector's position and get selected color in the past, you should set ColorPicker's <br>
+Preference name using __setPreferenceName__ method.
+
 ```java
 colorPickerView.setPreferenceName("MyColorPickerView");
 ```
 
 And you should save data when you want. <br>
-Then selector's position will be restored when be created ColorPickerView.
+Then selector's position will be restored when ColorPickerView is created.
 ```java
 @Override
 protected void onDestroy() {
@@ -80,13 +82,22 @@ protected void onDestroy() {
  }
 ```
 
+And you could get colors saved in the last using below methods. <br>
+Below methods need default color(if was not saved any colors it will returns default color) as an argument.
+```java
+int color = colorPickerView.getSavedColor(Color.WHITE);
+String htmlColor = colorPickerView.getSavedColorHtml(Color.WHITE);
+int[] colorRGB = colorPickerView.getSavedColorRGB(Color.WHITE); 
+```
+
 ### ColorPickerDialog
 Could be used just like using AlertDialog and provides colors from any images. <br>
-It extends AlertDialog, so you could customizing themes like below.
+It extends AlertDialog, so you could customizing themes also.
 
 ```java
 ColorPickerDialog.Builder builder = new ColorPickerDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
 builder.setTitle("ColorPicker Dialog");
+builder.setPreferenceName("MyColorPickerDialog");
 builder.setFlagView(new CustomFlag(this, R.layout.layout_flag));
 builder.setPositiveButton(getString(R.string.confirm), new ColorListener() {
    @Override
@@ -108,8 +119,9 @@ builder.show();
 ```
 
 #### save and restore
-If you want to save selector's position or get selected color past, you should setPreferenceName to ColorPickerView. <br>
-In case of ColorPickerDialog, colorpickerView.saveData() will be invoked automatically when PositiveButton be pressed. <br>
+If you want to save selector's position and get selected color in the past, you should set ColorPicker's <br> 
+Preference name using __setPreferenceName__ method. <br>
+In case of ColorPickerDialog, saveData() method will be invoked automatically when PositiveButton be selected. <br>
 Then selector's position will be restored when be created ColorPickerDialog. so just setting setPreferenceName is done.
 ```java
 ColorPickerView colorPickerView = builder.getColorPickerView();
@@ -134,7 +146,6 @@ ColorPickerPreference is used in PreferenceScreen and shows ColorPickerDialog if
 #### customizing
 If you want to customizing ColorPickerDialog in ColorPickerPreference, you could get ColorPickerDialog.Builder 
 using getColorPickerDialogBuilder() method.
-
 ```java
 ColorPickerPreference colorPickerPreference_toolbar = (ColorPickerPreference) findPreference(getActivity().getString(R.string.ToolbarColorPickerPreference));
 ColorPickerDialog.Builder builder_toolbar = colorPickerPreference_toolbar.getColorPickerDialogBuilder();
@@ -142,10 +153,43 @@ builder_toolbar.setFlagView(new CustomFlag(getActivity(), R.layout.layout_flag))
 ```
 
 ### FlagView
-FlagView lets you could add Flag over selector. <br>
-First, Customizing Flag layout as your taste. <br>
-Second, create CustomFlagView extending __FlagView__ like below.
+FlagView lets you could add a flag above a selector. <br>
+First, create Flag layout as your taste like below. <br>
 
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="100dp"
+    android:layout_height="40dp"
+    android:background="@drawable/flag"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/flag_color_layout"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="5dp"
+        android:orientation="vertical"/>
+
+    <TextView
+        android:id="@+id/flag_color_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:textSize="14dp"
+        android:textColor="@android:color/white"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        tools:text="#ffffff"/>
+</LinearLayout>
+```
+
+Second, create CustomFlagView extending __FlagView__.
 ```java
 public class CustomFlag extends FlagView {
 
@@ -166,9 +210,20 @@ public class CustomFlag extends FlagView {
 }
 ```
 
-And the last set FlagView on ColorPickerView. 
+And the last set FlagView on ColorPickerView or ColorPickerDialog.Builder.
 ```java
 colorPickerView.setFlagView(new CustomFlag(this, R.layout.layout_flag));
+```
+```java
+ColorPickerDialog.Builder builder = new ColorPickerDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
+builder.setFlagView(new CustomFlag(this, R.layout.layout_flag));
+```
+
+#### Mode
+You could set FlagView's showing mode.
+```java
+colorPickerView.setFlagMode(FlagMode.ALWAYS); // showing always flagView
+colorPickerView.setFlagMode(FlagMode.LAST); // showing flagView when touch Action_UP
 ```
 
 # License
