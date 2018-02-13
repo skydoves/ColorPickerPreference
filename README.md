@@ -1,6 +1,8 @@
 # ColorPickerPreference
+[![Build Status](https://travis-ci.org/skydoves/ColorPickerPreference.svg?branch=master)](https://travis-ci.org/skydoves/ColorPickerPreference)
+[![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=15)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Build Status](https://travis-ci.org/skydoves/ColorPickerPreference.svg?branch=master)](https://travis-ci.org/skydoves/ColorPickerPreference) <br>
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ColorPickerPreference-green.svg?style=flat)](https://android-arsenal.com/details/1/6759)<br>
 A library that let you implement ColorPickerView, ColorPickerDialog, ColorPickerPreference. <br>
 Could get HSV color, RGB values, Html color code from your gallery pictures or custom images just by touching.
 
