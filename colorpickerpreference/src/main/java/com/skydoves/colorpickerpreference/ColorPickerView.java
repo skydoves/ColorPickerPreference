@@ -309,6 +309,13 @@ public class ColorPickerView extends FrameLayout {
         this.preferenceName = preferenceName;
     }
 
+    public void setSavedColor(int color) {
+        sharedPreferencesManager.clearSavedPositions(
+                getPreferenceName() + ColorPickerSharedPreferencesManager.POSITION_X,
+                getPreferenceName() + ColorPickerSharedPreferencesManager.POSITION_Y);
+        sharedPreferencesManager.putInteger(getPreferenceName() + ColorPickerSharedPreferencesManager.COLOR, color);
+    }
+
     public Point getSelectedPoint() {
         return selectedPoint;
     }
@@ -385,5 +392,9 @@ public class ColorPickerView extends FrameLayout {
         rgb[1] = (color >> 8) & 0xFF; // hex to int : G
         rgb[2] = (color >> 0) & 0xFF; // hex to int : B
         return rgb;
+    }
+
+    public void clearSavedData() {
+        sharedPreferencesManager.clearSavedData();
     }
 }

@@ -24,19 +24,28 @@ public class ColorPickerSharedPreferencesManager {
 
     private SharedPreferences sharedPreferences;
 
-    public static final String COLOR = "_COLOR";
-    public static final String POSITION_X = "_POSITION_X";
-    public static final String POSITION_Y = "_POSITION_Y";
+    protected static final String COLOR = "_COLOR";
+    protected static final String POSITION_X = "_POSITION_X";
+    protected static final String POSITION_Y = "_POSITION_Y";
 
-    public ColorPickerSharedPreferencesManager(Context context) {
+    protected ColorPickerSharedPreferencesManager(Context context) {
         sharedPreferences = context.getSharedPreferences("com.skydoves.colorpickerpreference", Context.MODE_PRIVATE);
     }
 
-    public void putInteger(String key, int value) {
+    protected void putInteger(String key, int value) {
         sharedPreferences.edit().putInt(key, value).apply();
     }
 
-    public int getInteger(String key, int defaultValue) {
+    protected int getInteger(String key, int defaultValue) {
         return sharedPreferences.getInt(key, defaultValue);
+    }
+
+    protected void clearSavedPositions(String positionX, String positionY) {
+        sharedPreferences.edit().remove(positionX).apply();
+        sharedPreferences.edit().remove(positionY).apply();
+    }
+
+    protected void clearSavedData() {
+        sharedPreferences.edit().clear().apply();
     }
 }
