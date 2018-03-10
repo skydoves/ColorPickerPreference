@@ -15,7 +15,7 @@ Could get HSV color, RGB values, Html color code from your gallery pictures or c
 #### build.gradle
 ```java
 dependencies {
-  compile 'com.github.skydoves:colorpickerpreference:1.0.2'
+  compile 'com.github.skydoves:colorpickerpreference:1.0.3'
 }
 ```
 
@@ -133,6 +133,18 @@ ColorPickerView colorPickerView = builder.getColorPickerView();
 colorPickerView.setPreferenceName("MyColorPickerDialog");
 ```
 
+#### set saved color manually
+You can set saved color manually.
+```java
+colorPickerView.setSavedColor(YOUR_COLOR);
+```
+
+#### clear saved data
+You can clear all of ColorPicker's preference data.
+```java
+colorPickerView.clearSavedData();
+```
+
 ### ColorPickerPreference
 ColorPickerPreference is used in PreferenceScreen and shows ColorPickerDialog if be clicked.
 ```xml
@@ -246,6 +258,7 @@ setFlagMode(FlagMode flagMode) | void | sets FlagMode on ColorPickerView
 setFlipable(boolean flipable) | void | sets FlagView be flipbed when go out the ColorPickerView
 saveData() | void | save data at local preference. <br> In case of ColorPickerDialog, automatically be invoked when positive button be selected
 setPreferenceName(String name) | void | set ColorPicker's preference name. It lets could save and restore selector's positions and the last color
+setSavedColor(int color) | void | set ColorPicker's saved color manually.
 getColor() | int | returns the last selected color
 getColorHtml() | String | returns the last selected Html color code
 getColorRGB() | int[3] | returns the last selected color's R/G/B int array
@@ -254,6 +267,7 @@ getSelectedPoint() | Point | returns the last selected point
 getSavedColor(int defaultColor) | int | returns the last saved color
 getSavedColorHtml(int defaultColor) | String | returns the last saved Html color code
 getSavedColorRGB(int defaultColor) | int[3] | returns the last saved color R/G/B int array
+clearSavedData() | void | clear all of colorpicker's preference data
 
 #### ColorPickerDialog.Builder
 Methods | Return | Description
