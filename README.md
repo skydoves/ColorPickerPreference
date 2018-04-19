@@ -283,6 +283,10 @@ Methods | Return | Description
 setColorPickerDialogBuilder(ColorPickerDialog.Builder builder) | void | sets ColorPickerDialog.Builder as your own build
 getColorPickerDialogBuilder() | ColorPickerDialog.Builder | returns ColorPickerDialog.Builder
 
+## Posting & Blog
+- [Android Weekly #297](http://androidweekly.net/issues/issue-297)
+- [25 new Android libraries, projects and tools worthy to check in Spring 2018](https://medium.com/@mmbialas/25-new-android-libraries-projects-and-tools-worthy-to-check-in-spring-2018-68e3c5e93568)
+- [Colour Wheel – Part 1](https://blog.stylingandroid.com/colour-wheel-part-1)
 
 # License
 ```xml
