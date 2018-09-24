@@ -5,7 +5,7 @@ publish {
     userOrg = 'devmagician'
     groupId = 'com.github.skydoves'
     artifactId = 'colorpickerpreference'
-    publishVersion = '1.0.4'
+    publishVersion = '1.0.5'
     desc = 'This is ColorPickerPreference by skydoves'
     website = 'https://github.com/skydoves/ColorPickerPreference'
     issueTracker = "${website}/issues"
@@ -13,12 +13,11 @@ publish {
 }
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "27.0.3"
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
