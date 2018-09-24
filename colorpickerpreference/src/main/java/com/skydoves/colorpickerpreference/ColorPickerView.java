@@ -36,6 +36,7 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+@SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
 public class ColorPickerView extends FrameLayout {
 
     private int lastSelectedColor;
@@ -54,6 +55,10 @@ public class ColorPickerView extends FrameLayout {
 
     private boolean flipable = true;
     private boolean ACTON_UP = false;
+
+    private boolean flagSetPalette = false;
+    private float alpha_selector = 1.0f;
+    private float alpha_flag = 1.0f;
 
     private String preferenceName;
     private ColorPickerSharedPreferencesManager sharedPreferencesManager;
@@ -220,6 +225,16 @@ public class ColorPickerView extends FrameLayout {
     private void fireColorListener() {
         if (mColorListener != null) {
             mColorListener.onColorSelected(getColorEnvelope());
+
+            if(flagSetPalette) {
+                flagSetPalette = false;
+                if(selector != null) {
+                    selector.setAlpha(alpha_selector);
+                }
+                if(flagView != null) {
+                    flagView.setAlpha(alpha_flag);
+                }
+            }
         }
     }
 
@@ -259,7 +274,18 @@ public class ColorPickerView extends FrameLayout {
             addView(flagView);
         }
 
-        selectCenter();
+        // hide selector & flagView
+        if(!flagSetPalette) {
+            flagSetPalette = true;
+            if (selector != null) {
+                alpha_selector = selector.getAlpha();
+                selector.setAlpha(0.0f);
+            }
+            if (flagView != null) {
+                alpha_flag = flagView.getAlpha();
+                flagView.setAlpha(0.0f);
+            }
+        }
     }
 
     public void setFlagView(FlagView flagView) {
