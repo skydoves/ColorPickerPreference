@@ -13,9 +13,9 @@ Could get HSV color, RGB values, Html color code from your gallery pictures or c
 
 ## Including in your project
 #### build.gradle
-```java
+```gradle
 dependencies {
-  compile 'com.github.skydoves:colorpickerpreference:1.0.4'
+    implementation "com.github.skydoves:colorpickerpreference:1.0.5"
 }
 ```
 
@@ -26,7 +26,7 @@ Could be used just like using ImageView and provides colors from any images.
 #### Add XML Namespace
 First add below XML Namespace inside your XML layout file.
 
-```xml
+```gradle
 xmlns:app="http://schemas.android.com/apk/res-auto"
 ```
 
@@ -41,11 +41,11 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 ```
 
 #### Attribute description
-```
+```gradle
 app:palette="@drawable/palette" // set palette image
 ```
 
-```
+```gradle
 app:selector="@drawable/wheel" // set selector image. This isn't required always. If you don't need, don't use.
 ```
 
