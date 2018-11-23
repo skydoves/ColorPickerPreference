@@ -24,6 +24,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class ColorPickerDialog extends AlertDialog {
 
     private ColorPickerView colorPickerView;
@@ -126,15 +129,15 @@ public class ColorPickerDialog extends AlertDialog {
     }
 
     @Override
-    public void setContentView(View view) {
+    public void setContentView(@NonNull View view) {
     }
 
     @Override
-    public void setContentView(View view, ViewGroup.LayoutParams params) {
+    public void setContentView(@NonNull View view, ViewGroup.LayoutParams params) {
     }
 
     @Override
-    public void addContentView(View view, ViewGroup.LayoutParams params) {
+    public void addContentView(@NonNull View view, ViewGroup.LayoutParams params) {
     }
 
     @Override

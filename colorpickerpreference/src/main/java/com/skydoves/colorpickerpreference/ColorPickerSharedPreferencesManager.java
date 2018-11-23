@@ -20,6 +20,7 @@ package com.skydoves.colorpickerpreference;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class ColorPickerSharedPreferencesManager {
 
     private SharedPreferences sharedPreferences;

@@ -5,7 +5,7 @@ publish {
     userOrg = 'devmagician'
     groupId = 'com.github.skydoves'
     artifactId = 'colorpickerpreference'
-    publishVersion = '1.0.5'
+    publishVersion = '1.0.6'
     desc = 'This is ColorPickerPreference by skydoves'
     website = 'https://github.com/skydoves/ColorPickerPreference'
     issueTracker = "${website}/issues"
@@ -21,4 +21,8 @@ android {
         versionCode 1
         versionName "1.0"
     }
+}
+
+dependencies {
+    implementation "androidx.annotation:annotation:1.0.0"
 }

@@ -17,6 +17,7 @@
 
 package com.skydoves.colorpickerpreference;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class ColorEnvelope {
     private int color;
     private String htmlCode;
