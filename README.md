@@ -5,7 +5,7 @@
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ColorPickerPreference-green.svg?style=flat)](https://android-arsenal.com/details/1/6759)
 [![Android Weekly](https://img.shields.io/badge/Android%20Weekly-%23297-orange.svg)](http://androidweekly.net/issues/issue-297)
 <br>
-A library that let you implement ColorPickerView, ColorPickerDialog, ColorPickerPreference. <br>
+A library that lets you implement ColorPickerView, ColorPickerDialog, ColorPickerPreference. <br>
 Could get HSV color, RGB values, Html color code from your gallery pictures or custom images just by touching.
 
 ![screenshot](https://user-images.githubusercontent.com/24237865/36096666-9e9fc7ca-103a-11e8-9a1a-e1d685d000f9.png)
@@ -15,7 +15,7 @@ Could get HSV color, RGB values, Html color code from your gallery pictures or c
 #### build.gradle
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:colorpickerpreference:1.0.5"
+    implementation "com.github.skydoves:colorpickerpreference:1.0.6"
 }
 ```
 
@@ -31,7 +31,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 ```
 
 #### ColorPickerView in layout
-```xml
+```gradle
 <com.skydoves.colorpickerpreference.ColorPickerView
         android:id="@+id/colorPickerView"
         android:layout_width="300dp"
