@@ -38,7 +38,7 @@
                 android:text="ColorPicker Example"/>
         </com.skydoves.elasticviews.ElasticLayout>
 
-        <android.support.v4.widget.Space
+        <androidx.legacy.widget.Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.1"/>
@@ -64,7 +64,7 @@
                 android:text="ColorPickerDialog Example"/>
         </com.skydoves.elasticviews.ElasticLayout>
 
-        <android.support.v4.widget.Space
+        <androidx.legacy.widget.Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.1"/>

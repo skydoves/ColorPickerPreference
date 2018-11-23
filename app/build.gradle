@@ -8,7 +8,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -22,8 +22,8 @@ android {
 }
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:$supportLibrary"
-    implementation "com.android.support:design:$supportLibrary"
-    implementation "com.github.skydoves:elasticviews:2.0.0"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.android.material:material:1.1.0-alpha01'
+    implementation "com.github.skydoves:elasticviews:2.0.1"
     implementation project(':colorpickerpreference')
 }
