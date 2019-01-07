@@ -1,7 +1,6 @@
 package com.skydoves.colorpickerpreferencedemo;
 
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -9,6 +8,8 @@ import android.widget.TextView;
 import com.skydoves.colorpickerpreference.ColorEnvelope;
 import com.skydoves.colorpickerpreference.ColorListener;
 import com.skydoves.colorpickerpreference.ColorPickerView;
+
+import androidx.core.content.ContextCompat;
 
 /**
  * Developed by skydoves on 2018-02-11.
@@ -41,6 +42,7 @@ public class ColorPickerViewActivity extends BaseActivity {
 
     /**
      * set layout color & textView html code
+     *
      * @param color
      */
     private void setLayoutColor(int color) {
@@ -54,10 +56,11 @@ public class ColorPickerViewActivity extends BaseActivity {
     /**
      * change palette drawable resource
      * you must initialize at first in xml
+     *
      * @param v view
      */
     public void palette(View v) {
-        if(FLAG_PALETTE)
+        if (FLAG_PALETTE)
             colorPickerView.setPaletteDrawable(ContextCompat.getDrawable(this, R.drawable.palette));
         else
             colorPickerView.setPaletteDrawable(ContextCompat.getDrawable(this, R.drawable.palettebar));
@@ -67,10 +70,11 @@ public class ColorPickerViewActivity extends BaseActivity {
     /**
      * change selector drawable resource
      * you must initialize at first in xml
+     *
      * @param v view
      */
     public void selector(View v) {
-        if(FLAG_SELECTOR)
+        if (FLAG_SELECTOR)
             colorPickerView.setSelectorDrawable(ContextCompat.getDrawable(this, R.drawable.wheel));
         else
             colorPickerView.setSelectorDrawable(ContextCompat.getDrawable(this, R.drawable.wheel_dark));
@@ -79,11 +83,12 @@ public class ColorPickerViewActivity extends BaseActivity {
 
     /**
      * moving selector's points (x, y)
+     *
      * @param v view
      */
     public void points(View v) {
-        int x = (int)(Math.random() * 600) + 100;
-        int y = (int)(Math.random() * 400) + 150;
+        int x = (int) (Math.random() * 600) + 100;
+        int y = (int) (Math.random() * 400) + 150;
         colorPickerView.setSelectorPoint(x, y);
     }
 

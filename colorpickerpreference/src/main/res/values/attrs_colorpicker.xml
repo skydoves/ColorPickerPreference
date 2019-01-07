@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="ColorPickerView">
-        <attr name="palette" format="reference"/>
-        <attr name="selector" format="reference"/>
+        <attr name="palette" format="reference" />
+        <attr name="selector" format="reference" />
     </declare-styleable>
     <declare-styleable name="ColorPickerPreference">
-        <attr name="default_color" format="color"/>
-        <attr name="preference_palette" format="reference"/>
-        <attr name="preference_selector" format="reference"/>
-        <attr name="preference_dialog_title" format="string"/>
-        <attr name="preference_dialog_positive" format="string"/>
-        <attr name="preference_dialog_negative" format="string"/>
+        <attr name="default_color" format="color" />
+        <attr name="preference_palette" format="reference" />
+        <attr name="preference_selector" format="reference" />
+        <attr name="preference_dialog_title" format="string" />
+        <attr name="preference_dialog_positive" format="string" />
+        <attr name="preference_dialog_negative" format="string" />
     </declare-styleable>
 </resources>

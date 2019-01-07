@@ -1,93 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/layout_background"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_toolbar"/>
+    <include layout="@layout/layout_toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="3.2"
-        android:padding="15dp">
+        android:padding="15dp"
+        android:weightSum="3.2">
 
         <com.skydoves.elasticviews.ElasticLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:onClick="example0"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            app:layout_backgroundColor="@color/background800"
             app:button_duration="150"
             app:button_scale="0.8"
+            app:layout_backgroundColor="@color/background800"
             app:layout_round="20">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:padding="5dp"
                 android:layout_centerInParent="true"
-                android:textStyle="bold"
+                android:padding="5dp"
+                android:text="ColorPicker Example"
+                android:textColor="@android:color/white"
                 android:textSize="21sp"
-                android:text="ColorPicker Example"/>
+                android:textStyle="bold" />
         </com.skydoves.elasticviews.ElasticLayout>
 
         <androidx.legacy.widget.Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.1"/>
+            android:layout_weight="0.1" />
 
         <com.skydoves.elasticviews.ElasticLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:onClick="example1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            app:layout_backgroundColor="@color/background800"
             app:button_duration="150"
             app:button_scale="0.8"
+            app:layout_backgroundColor="@color/background800"
             app:layout_round="20">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:padding="5dp"
                 android:layout_centerInParent="true"
-                android:textStyle="bold"
+                android:padding="5dp"
+                android:text="ColorPickerDialog Example"
+                android:textColor="@android:color/white"
                 android:textSize="21sp"
-                android:text="ColorPickerDialog Example"/>
+                android:textStyle="bold" />
         </com.skydoves.elasticviews.ElasticLayout>
 
         <androidx.legacy.widget.Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.1"/>
+            android:layout_weight="0.1" />
 
         <com.skydoves.elasticviews.ElasticLayout
-            android:onClick="example2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            app:layout_backgroundColor="@color/background800"
+            android:onClick="example2"
             app:button_duration="150"
             app:button_scale="0.8"
+            app:layout_backgroundColor="@color/background800"
             app:layout_round="20">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:padding="5dp"
                 android:layout_centerInParent="true"
-                android:textStyle="bold"
+                android:padding="5dp"
+                android:text="ColorPreference Example"
+                android:textColor="@android:color/white"
                 android:textSize="21sp"
-                android:text="ColorPreference Example"/>
+                android:textStyle="bold" />
         </com.skydoves.elasticviews.ElasticLayout>
     </LinearLayout>
 </LinearLayout>

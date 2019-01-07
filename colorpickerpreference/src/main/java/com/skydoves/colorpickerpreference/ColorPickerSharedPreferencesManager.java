@@ -23,11 +23,10 @@ import android.content.SharedPreferences;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class ColorPickerSharedPreferencesManager {
 
-    private SharedPreferences sharedPreferences;
-
     protected static final String COLOR = "_COLOR";
     protected static final String POSITION_X = "_POSITION_X";
     protected static final String POSITION_Y = "_POSITION_Y";
+    private SharedPreferences sharedPreferences;
 
     protected ColorPickerSharedPreferencesManager(Context context) {
         sharedPreferences = context.getSharedPreferences("com.skydoves.colorpickerpreference", Context.MODE_PRIVATE);

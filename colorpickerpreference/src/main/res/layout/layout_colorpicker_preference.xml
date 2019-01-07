@@ -9,7 +9,7 @@
         android:id="@+id/colorpicker_preference_colorbox"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:orientation="vertical"
         android:layout_gravity="end|center_vertical"
-        tools:background="#000000"/>
+        android:orientation="vertical"
+        tools:background="#000000" />
 </FrameLayout>

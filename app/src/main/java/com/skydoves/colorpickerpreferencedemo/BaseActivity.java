@@ -3,13 +3,14 @@ package com.skydoves.colorpickerpreferencedemo;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 /**
  * Developed by skydoves on 2018-02-12.
@@ -60,8 +61,8 @@ public class BaseActivity extends AppCompatActivity {
      */
     public void setBackgroundColor() {
         View view = findViewById(R.id.layout_background);
-        if(view != null) {
-            view.setBackgroundColor(sharedPreferences.getInt(getString(R.string.BackgroundColorPickerPreference),  ContextCompat.getColor(getBaseContext(), R.color.background)));
+        if (view != null) {
+            view.setBackgroundColor(sharedPreferences.getInt(getString(R.string.BackgroundColorPickerPreference), ContextCompat.getColor(getBaseContext(), R.color.background)));
         }
     }
 }

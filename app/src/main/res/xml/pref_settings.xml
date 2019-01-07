@@ -1,5 +1,4 @@
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <SwitchPreference
@@ -14,27 +13,27 @@
 
     <com.skydoves.colorpickerpreference.ColorPickerPreference
         android:key="@string/ToolbarColorPickerPreference"
-        android:title="Toolbar Color"
         android:summary="changes toolbar color"
-        app:preference_dialog_title="Toolbar ColorPickerDialog"
-        app:preference_dialog_positive="@string/confirm"
+        android:title="Toolbar Color"
+        app:default_color="@color/colorPrimary"
         app:preference_dialog_negative="@string/cancel"
+        app:preference_dialog_positive="@string/confirm"
+        app:preference_dialog_title="Toolbar ColorPickerDialog"
         app:preference_palette="@drawable/palettebar"
-        app:preference_selector="@drawable/wheel"
-        app:default_color="@color/colorPrimary"/>
+        app:preference_selector="@drawable/wheel" />
 
     <com.skydoves.colorpickerpreference.ColorPickerPreference
         android:key="@string/BackgroundColorPickerPreference"
-        android:title="Background Color"
         android:summary="changes background color"
-        app:preference_dialog_title="Background ColorPickerDialog"
-        app:preference_dialog_positive="@string/confirm"
+        android:title="Background Color"
+        app:default_color="@color/background"
         app:preference_dialog_negative="@string/cancel"
+        app:preference_dialog_positive="@string/confirm"
+        app:preference_dialog_title="Background ColorPickerDialog"
         app:preference_palette="@drawable/palette"
-        app:preference_selector="@drawable/wheel"
-        app:default_color="@color/background"/>
+        app:preference_selector="@drawable/wheel" />
 
     <Preference
-        android:title="github"
-        android:summary="skydoves"/>
+        android:summary="skydoves"
+        android:title="github" />
 </PreferenceScreen>

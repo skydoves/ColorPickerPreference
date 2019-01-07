@@ -61,6 +61,33 @@ public class ColorPickerDialog extends AlertDialog {
         this.colorPickerView.setColorListener(colorListener);
     }
 
+    /**
+     * prevent set views
+     */
+    @Override
+    public void setContentView(int layoutResID) {
+    }
+
+    @Override
+    public void setContentView(@NonNull View view) {
+    }
+
+    @Override
+    public void setContentView(@NonNull View view, ViewGroup.LayoutParams params) {
+    }
+
+    @Override
+    public void addContentView(@NonNull View view, ViewGroup.LayoutParams params) {
+    }
+
+    @Override
+    public void setView(View view) {
+    }
+
+    @Override
+    public void setView(View view, int viewSpacingLeft, int viewSpacingTop, int viewSpacingRight, int viewSpacingBottom) {
+    }
+
     public static class Builder extends AlertDialog.Builder {
         private ColorListener colorListener;
         private ColorPickerView colorPickerView;
@@ -79,7 +106,7 @@ public class ColorPickerDialog extends AlertDialog {
             initColorPickerView();
         }
 
-        private void initColorPickerView()  {
+        private void initColorPickerView() {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = layoutInflater.inflate(R.layout.layout_dialog_colorpicker, null);
             this.colorPickerView = view.findViewById(R.id.ColorPickerView);
@@ -119,32 +146,5 @@ public class ColorPickerDialog extends AlertDialog {
 
             return super.setPositiveButton(text, onClickListener);
         }
-    }
-
-    /**
-     * prevent set views
-     */
-    @Override
-    public void setContentView(int layoutResID) {
-    }
-
-    @Override
-    public void setContentView(@NonNull View view) {
-    }
-
-    @Override
-    public void setContentView(@NonNull View view, ViewGroup.LayoutParams params) {
-    }
-
-    @Override
-    public void addContentView(@NonNull View view, ViewGroup.LayoutParams params) {
-    }
-
-    @Override
-    public void setView(View view) {
-    }
-
-    @Override
-    public void setView(View view, int viewSpacingLeft, int viewSpacingTop, int viewSpacingRight, int viewSpacingBottom) {
     }
 }

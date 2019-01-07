@@ -40,18 +40,14 @@ import android.widget.ImageView;
 @SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
 public class ColorPickerView extends FrameLayout {
 
+    protected ColorListener mColorListener;
     private int lastSelectedColor;
     private Point selectedPoint;
-
     private ImageView palette;
     private ImageView selector;
     private FlagView flagView;
-
     private Drawable paletteDrawable;
     private Drawable selectorDrawable;
-
-    protected ColorListener mColorListener;
-
     private FlagMode flagMode = FlagMode.ALWAYS;
 
     private boolean flipable = true;
@@ -106,9 +102,9 @@ public class ColorPickerView extends FrameLayout {
     }
 
     private void onFirstLayout() {
-        if(getPreferenceName() != null) {
-            int saved_x = sharedPreferencesManager.getInteger(getPreferenceName() + ColorPickerSharedPreferencesManager.POSITION_X, getMeasuredWidth()/2);
-            int saved_y = sharedPreferencesManager.getInteger(getPreferenceName() + ColorPickerSharedPreferencesManager.POSITION_Y, getMeasuredHeight()/2);
+        if (getPreferenceName() != null) {
+            int saved_x = sharedPreferencesManager.getInteger(getPreferenceName() + ColorPickerSharedPreferencesManager.POSITION_X, getMeasuredWidth() / 2);
+            int saved_y = sharedPreferencesManager.getInteger(getPreferenceName() + ColorPickerSharedPreferencesManager.POSITION_Y, getMeasuredHeight() / 2);
             setSelectorPoint(saved_x, saved_y);
             handleFlagView(new Point(saved_x - getSelectorHalfWidth(), saved_y - getSelectorHalfHeight()));
         } else
@@ -155,15 +151,15 @@ public class ColorPickerView extends FrameLayout {
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        if(flagView != null && flagMode == FlagMode.LAST) flagView.gone();
+                        if (flagView != null && flagMode == FlagMode.LAST) flagView.gone();
                         selector.setPressed(true);
                         return onTouchReceived(event);
                     case MotionEvent.ACTION_MOVE:
-                        if(flagView != null && flagMode == FlagMode.LAST) flagView.gone();
+                        if (flagView != null && flagMode == FlagMode.LAST) flagView.gone();
                         selector.setPressed(true);
                         return onTouchReceived(event);
                     case MotionEvent.ACTION_UP:
-                        if(flagView != null && flagMode == FlagMode.LAST) flagView.visible();
+                        if (flagView != null && flagMode == FlagMode.LAST) flagView.visible();
                         selector.setPressed(true);
                         return onTouchReceived(event);
                     default:
@@ -175,10 +171,10 @@ public class ColorPickerView extends FrameLayout {
     }
 
     private boolean onTouchReceived(MotionEvent event) {
-        Point snapPoint = new Point((int)event.getX(), (int)event.getY());
+        Point snapPoint = new Point((int) event.getX(), (int) event.getY());
         int selectedColor = getColorFromBitmap(snapPoint.x, snapPoint.y);
 
-        if(selectedColor != Color.TRANSPARENT) {
+        if (selectedColor != Color.TRANSPARENT) {
             Point centerPoint = getCenterPoint(snapPoint.x, snapPoint.y);
             selector.setX(snapPoint.x - (selector.getMeasuredWidth() / 2));
             selector.setY(snapPoint.y - (selector.getMeasuredHeight() / 2));
@@ -186,8 +182,8 @@ public class ColorPickerView extends FrameLayout {
             lastSelectedColor = selectedColor;
             handleFlagView(centerPoint);
 
-            if(ACTON_UP) {
-                if(event.getAction() == MotionEvent.ACTION_UP) {
+            if (ACTON_UP) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
                     fireColorListener();
                 }
             } else {
@@ -233,12 +229,12 @@ public class ColorPickerView extends FrameLayout {
         if (mColorListener != null) {
             mColorListener.onColorSelected(getColorEnvelope());
 
-            if(flagSetPalette) {
+            if (flagSetPalette) {
                 flagSetPalette = false;
-                if(selector != null) {
+                if (selector != null) {
                     selector.setAlpha(alpha_selector);
                 }
-                if(flagView != null) {
+                if (flagView != null) {
                     flagView.setAlpha(alpha_flag);
                 }
             }
@@ -247,13 +243,13 @@ public class ColorPickerView extends FrameLayout {
 
     private void handleFlagView(Point centerPoint) {
         if (flagView != null) {
-            if(flagMode == FlagMode.ALWAYS) flagView.visible();
-            if(centerPoint.y - flagView.getHeight() > 0) {
+            if (flagMode == FlagMode.ALWAYS) flagView.visible();
+            if (centerPoint.y - flagView.getHeight() > 0) {
                 flagView.setRotation(0);
                 flagView.setX(centerPoint.x - flagView.getWidth() / 2 + selector.getWidth() / 2);
                 flagView.setY(centerPoint.y - flagView.getHeight());
                 flagView.onRefresh(getColorEnvelope());
-            } else if(getFilpable()) {
+            } else if (getFilpable()) {
                 flagView.setRotation(180);
                 flagView.setX(centerPoint.x - flagView.getWidth() / 2 + selector.getWidth() / 2);
                 flagView.setY(centerPoint.y + flagView.getHeight() - selector.getHeight() / 2);
@@ -276,13 +272,13 @@ public class ColorPickerView extends FrameLayout {
         removeView(selector);
         addView(selector);
 
-        if(flagView != null) {
+        if (flagView != null) {
             removeView(flagView);
             addView(flagView);
         }
 
         // hide selector & flagView
-        if(!flagSetPalette) {
+        if (!flagSetPalette) {
             flagSetPalette = true;
             if (selector != null) {
                 alpha_selector = selector.getAlpha();
@@ -295,22 +291,12 @@ public class ColorPickerView extends FrameLayout {
         }
     }
 
-    public void setFlagView(FlagView flagView) {
-        flagView.gone();
-        addView(flagView);
-        this.flagView = flagView;
-    }
-
-    public void setFlagMode(FlagMode flagMode) {
-        this.flagMode = flagMode;
-    }
-
     public void setSelectorDrawable(Drawable drawable) {
         selector.setImageDrawable(drawable);
     }
 
     public void selectCenter() {
-        setSelectorPoint(getMeasuredWidth()/2, getMeasuredHeight()/2);
+        setSelectorPoint(getMeasuredWidth() / 2, getMeasuredHeight() / 2);
     }
 
     public void setSelectorPoint(int x, int y) {
@@ -331,15 +317,11 @@ public class ColorPickerView extends FrameLayout {
     }
 
     public void saveData() {
-        if(getPreferenceName() != null) {
+        if (getPreferenceName() != null) {
             sharedPreferencesManager.putInteger(getPreferenceName() + ColorPickerSharedPreferencesManager.POSITION_X, selectedPoint.x);
             sharedPreferencesManager.putInteger(getPreferenceName() + ColorPickerSharedPreferencesManager.POSITION_Y, selectedPoint.y);
             sharedPreferencesManager.putInteger(getPreferenceName() + ColorPickerSharedPreferencesManager.COLOR, lastSelectedColor);
         }
-    }
-
-    public void setPreferenceName(String preferenceName) {
-        this.preferenceName = preferenceName;
     }
 
     public void setSavedColor(int color) {
@@ -366,18 +348,18 @@ public class ColorPickerView extends FrameLayout {
     }
 
     public int getSelectorHalfWidth() {
-        return selector.getMeasuredWidth()/2;
+        return selector.getMeasuredWidth() / 2;
     }
 
     public int getSelectorHalfHeight() {
-        return selector.getMeasuredHeight()/2;
+        return selector.getMeasuredHeight() / 2;
     }
 
     public int getColor() {
         return lastSelectedColor;
     }
 
-    public String getColorHtml(){
+    public String getColorHtml() {
         return String.format("%06X", (0xFFFFFF & lastSelectedColor));
     }
 
@@ -398,8 +380,18 @@ public class ColorPickerView extends FrameLayout {
         return this.flagView;
     }
 
+    public void setFlagView(FlagView flagView) {
+        flagView.gone();
+        addView(flagView);
+        this.flagView = flagView;
+    }
+
     public FlagMode getFlagMode() {
         return this.flagMode;
+    }
+
+    public void setFlagMode(FlagMode flagMode) {
+        this.flagMode = flagMode;
     }
 
     public boolean getFilpable() {
@@ -408,6 +400,10 @@ public class ColorPickerView extends FrameLayout {
 
     public String getPreferenceName() {
         return this.preferenceName;
+    }
+
+    public void setPreferenceName(String preferenceName) {
+        this.preferenceName = preferenceName;
     }
 
     public int getSavedColor(int defaultColor) {

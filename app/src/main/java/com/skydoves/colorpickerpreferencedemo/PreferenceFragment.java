@@ -3,13 +3,14 @@ package com.skydoves.colorpickerpreferencedemo;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 
 import com.skydoves.colorpickerpreference.ColorEnvelope;
 import com.skydoves.colorpickerpreference.ColorListener;
 import com.skydoves.colorpickerpreference.ColorPickerDialog;
 import com.skydoves.colorpickerpreference.ColorPickerPreference;
 import com.skydoves.colorpickerpreference.FlagMode;
+
+import androidx.annotation.Nullable;
 
 /**
  * Developed by skydoves on 2018-02-11.

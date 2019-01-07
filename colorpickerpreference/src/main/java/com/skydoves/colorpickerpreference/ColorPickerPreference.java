@@ -91,9 +91,13 @@ public class ColorPickerPreference extends Preference {
     protected void onClick() {
         super.onClick();
 
-        if(alertDialog != null) {
+        if (alertDialog != null) {
             alertDialog.show();
         }
+    }
+
+    public ColorPickerDialog.Builder getColorPickerDialogBuilder() {
+        return this.builder;
     }
 
     public void setColorPickerDialogBuilder(ColorPickerDialog.Builder builder) {
@@ -102,7 +106,7 @@ public class ColorPickerPreference extends Preference {
         this.builder.setPositiveButton(positive, new ColorListener() {
             @Override
             public void onColorSelected(ColorEnvelope colorEnvelope) {
-                if(colorBox != null) {
+                if (colorBox != null) {
                     colorBox.setBackgroundColor(colorEnvelope.getColor());
                     getPreferenceManager().getSharedPreferences().edit().putInt(getKey(), colorEnvelope.getColor()).apply();
                 }
@@ -120,9 +124,5 @@ public class ColorPickerPreference extends Preference {
         colorPickerView.setSelectorDrawable(selectorDrawable);
         colorPickerView.setPreferenceName(getKey());
         this.alertDialog = builder.create();
-    }
-
-    public ColorPickerDialog.Builder getColorPickerDialogBuilder() {
-        return this.builder;
     }
 }
