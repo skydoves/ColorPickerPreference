@@ -27,6 +27,7 @@ import android.preference.Preference;
 import android.util.AttributeSet;
 import android.view.View;
 
+@SuppressWarnings("unused")
 public class ColorPickerPreference extends Preference {
 
     private View colorBox;

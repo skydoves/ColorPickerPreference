@@ -55,7 +55,6 @@ public class PreferenceFragment extends android.preference.PreferenceFragment {
             }
         });
 
-        builder.getColorPickerView().setFlipable(false);
         builder.getColorPickerView().setFlagMode(FlagMode.LAST);
         return builder;
     }

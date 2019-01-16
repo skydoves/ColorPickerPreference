@@ -1,5 +1,6 @@
 package com.skydoves.colorpickerpreferencedemo;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ public class ColorPickerDialogActivity extends BaseActivity {
 
     private AlertDialog alertDialog;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,7 @@ public class ColorPickerDialogActivity extends BaseActivity {
         builder.setPreferenceName("MyColorPickerDialog");
         builder.setFlagView(new CustomFlag(this, R.layout.layout_flag));
         builder.setPositiveButton(getString(R.string.confirm), new ColorListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onColorSelected(ColorEnvelope colorEnvelope) {
                 TextView textView = findViewById(R.id.textView);
@@ -50,9 +53,7 @@ public class ColorPickerDialogActivity extends BaseActivity {
 
         alertDialog = builder.create();
 
-        /**
-         * get ColorPicker from builder, and set views as saved data
-         */
+        /* get ColorPicker from builder, and set views as saved data */
         ColorPickerView colorPickerView = builder.getColorPickerView();
 
         TextView textView = findViewById(R.id.textView);

@@ -1,5 +1,6 @@
 package com.skydoves.colorpickerpreferencedemo;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -43,8 +44,9 @@ public class ColorPickerViewActivity extends BaseActivity {
     /**
      * set layout color & textView html code
      *
-     * @param color
+     * @param color selected color
      */
+    @SuppressLint("SetTextI18n")
     private void setLayoutColor(int color) {
         TextView textView = findViewById(R.id.textView);
         textView.setText("#" + colorPickerView.getColorHtml());

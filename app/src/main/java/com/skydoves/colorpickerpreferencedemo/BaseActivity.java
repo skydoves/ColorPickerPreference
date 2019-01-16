@@ -1,5 +1,6 @@
 package com.skydoves.colorpickerpreferencedemo;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -17,6 +18,7 @@ import androidx.core.content.ContextCompat;
  * Copyright (c) 2018 skydoves rights reserved.
  */
 
+@SuppressLint("Registered")
 public class BaseActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;

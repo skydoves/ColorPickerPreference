@@ -17,6 +17,7 @@
 
 package com.skydoves.colorpickerpreference;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -37,7 +38,7 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-@SuppressWarnings({"WeakerAccess", "unchecked", "unused"})
+@SuppressWarnings({"WeakerAccess", "unchecked", "unused", "IntegerDivisionInFloatingPointContext", "PointlessBitwiseExpression"})
 public class ColorPickerView extends FrameLayout {
 
     protected ColorListener mColorListener;
@@ -147,6 +148,7 @@ public class ColorPickerView extends FrameLayout {
 
     private void loadListeners() {
         setOnTouchListener(new OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
