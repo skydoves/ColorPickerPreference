@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2018 skydoves
  *
@@ -18,5 +17,5 @@
 package com.skydoves.colorpickerpreference;
 
 public interface ColorListener {
-    void onColorSelected(ColorEnvelope colorEnvelope);
+  void onColorSelected(ColorEnvelope colorEnvelope);
 }

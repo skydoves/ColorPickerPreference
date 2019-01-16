@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2018 skydoves
  *
@@ -18,5 +17,6 @@
 package com.skydoves.colorpickerpreference;
 
 public enum FlagMode {
-    ALWAYS, LAST
+  ALWAYS,
+  LAST
 }

@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2018 skydoves
  *
@@ -19,25 +18,25 @@ package com.skydoves.colorpickerpreference;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class ColorEnvelope {
-    private int color;
-    private String htmlCode;
-    private int[] rgb;
+  private int color;
+  private String htmlCode;
+  private int[] rgb;
 
-    public ColorEnvelope(int color, String htmlCode, int[] rgb) {
-        this.color = color;
-        this.htmlCode = htmlCode;
-        this.rgb = rgb;
-    }
+  public ColorEnvelope(int color, String htmlCode, int[] rgb) {
+    this.color = color;
+    this.htmlCode = htmlCode;
+    this.rgb = rgb;
+  }
 
-    public int getColor() {
-        return this.color;
-    }
+  public int getColor() {
+    return this.color;
+  }
 
-    public String getColorHtml() {
-        return this.htmlCode;
-    }
+  public String getColorHtml() {
+    return this.htmlCode;
+  }
 
-    public int[] getColorRGB() {
-        return this.rgb;
-    }
+  public int[] getColorRGB() {
+    return this.rgb;
+  }
 }

@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2018 skydoves
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.skydoves.colorpickerpreferencedemo;
 
 import android.annotation.SuppressLint;
@@ -7,63 +23,63 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.skydoves.colorpickerpreference.ColorEnvelope;
 import com.skydoves.colorpickerpreference.ColorListener;
 import com.skydoves.colorpickerpreference.ColorPickerDialog;
 import com.skydoves.colorpickerpreference.ColorPickerView;
 
-/**
- * Developed by skydoves on 2018-02-11.
- * Copyright (c) 2018 skydoves rights reserved.
- */
-
+/** Developed by skydoves on 2018-02-11. Copyright (c) 2018 skydoves rights reserved. */
 public class ColorPickerDialogActivity extends BaseActivity {
 
-    private AlertDialog alertDialog;
+  private AlertDialog alertDialog;
 
-    @SuppressLint("SetTextI18n")
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_color_picker_dialog);
-        setToolbarTitle("ColorPickerDialogActivity");
+  @SuppressLint("SetTextI18n")
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_color_picker_dialog);
+    setToolbarTitle("ColorPickerDialogActivity");
 
-        ColorPickerDialog.Builder builder = new ColorPickerDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
-        builder.setTitle("ColorPicker Dialog");
-        builder.setPreferenceName("MyColorPickerDialog");
-        builder.setFlagView(new CustomFlag(this, R.layout.layout_flag));
-        builder.setPositiveButton(getString(R.string.confirm), new ColorListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onColorSelected(ColorEnvelope colorEnvelope) {
-                TextView textView = findViewById(R.id.textView);
-                textView.setText("#" + colorEnvelope.getColorHtml());
+    ColorPickerDialog.Builder builder =
+        new ColorPickerDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
+    builder.setTitle("ColorPicker Dialog");
+    builder.setPreferenceName("MyColorPickerDialog");
+    builder.setFlagView(new CustomFlag(this, R.layout.layout_flag));
+    builder.setPositiveButton(
+        getString(R.string.confirm),
+        new ColorListener() {
+          @SuppressLint("SetTextI18n")
+          @Override
+          public void onColorSelected(ColorEnvelope colorEnvelope) {
+            TextView textView = findViewById(R.id.textView);
+            textView.setText("#" + colorEnvelope.getColorHtml());
 
-                LinearLayout linearLayout = findViewById(R.id.linearLayout);
-                linearLayout.setBackgroundColor(colorEnvelope.getColor());
-            }
+            LinearLayout linearLayout = findViewById(R.id.linearLayout);
+            linearLayout.setBackgroundColor(colorEnvelope.getColor());
+          }
         });
-        builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }
+    builder.setNegativeButton(
+        getString(R.string.cancel),
+        new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialogInterface, int i) {
+            dialogInterface.dismiss();
+          }
         });
 
-        alertDialog = builder.create();
+    alertDialog = builder.create();
 
-        /* get ColorPicker from builder, and set views as saved data */
-        ColorPickerView colorPickerView = builder.getColorPickerView();
+    /* get ColorPicker from builder, and set views as saved data */
+    ColorPickerView colorPickerView = builder.getColorPickerView();
 
-        TextView textView = findViewById(R.id.textView);
-        textView.setText("#" + colorPickerView.getSavedColorHtml(R.color.colorAccent));
+    TextView textView = findViewById(R.id.textView);
+    textView.setText("#" + colorPickerView.getSavedColorHtml(R.color.colorAccent));
 
-        LinearLayout linearLayout = findViewById(R.id.linearLayout);
-        linearLayout.setBackgroundColor(colorPickerView.getSavedColor(R.color.colorAccent));
-    }
+    LinearLayout linearLayout = findViewById(R.id.linearLayout);
+    linearLayout.setBackgroundColor(colorPickerView.getSavedColor(R.color.colorAccent));
+  }
 
-    public void showDialog(View view) {
-        alertDialog.show();
-    }
+  public void showDialog(View view) {
+    alertDialog.show();
+  }
 }
