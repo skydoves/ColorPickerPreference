@@ -15,7 +15,7 @@ Could get HSV color, RGB values, Html color code from your gallery pictures or c
 #### build.gradle
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:colorpickerpreference:1.0.6"
+    implementation "com.github.skydoves:colorpickerpreference:1.0.7"
 }
 ```
 
@@ -33,11 +33,11 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 #### ColorPickerView in layout
 ```gradle
 <com.skydoves.colorpickerpreference.ColorPickerView
-        android:id="@+id/colorPickerView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        app:palette="@drawable/palette"
-        app:selector="@drawable/wheel" />
+    android:id="@+id/colorPickerView"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    app:palette="@drawable/palette"
+    app:selector="@drawable/wheel" />
 ```
 
 #### Attribute description
@@ -52,12 +52,12 @@ app:selector="@drawable/wheel" // set selector image. This isn't required always
 #### Color Selected Listener
 ```java
 colorPickerView.setColorListener(new ColorListener() {
-            @Override
-            public void onColorSelected(ColorEnvelope colorEnvelope) {
-                LinearLayout linearLayout = findViewById(R.id.linearLayout);
-                linearLayout.setBackgroundColor(colorEnvelope.getColor());
-            }
-        });
+   @Override
+   public void onColorSelected(ColorEnvelope colorEnvelope) {
+       LinearLayout linearLayout = findViewById(R.id.linearLayout);
+       linearLayout.setBackgroundColor(colorEnvelope.getColor());
+    }
+});
 ```
 
 #### ColorEnvelope
