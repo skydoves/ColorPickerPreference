@@ -1,0 +1,11 @@
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    userOrg = 'devmagician'
+    groupId = 'com.github.skydoves'
+    artifactId = 'colorpickerpreference'
+    publishVersion = '1.0.7'
+    desc = 'This is ColorPickerPreference by skydoves'
+    website = 'https://github.com/skydoves/ColorPickerPreference'
+    issueTracker = "${website}/issues"
+    repository = "${website}.git"
+}
