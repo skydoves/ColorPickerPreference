@@ -12,6 +12,8 @@ Could get HSV color, RGB values, Html color code from your gallery pictures or c
 ![gif](https://user-images.githubusercontent.com/24237865/36096667-9ec6693e-103a-11e8-8ed8-1d99da83c9ac.gif)
 
 ## Including in your project
+[ ![Download](https://api.bintray.com/packages/devmagician/maven/colorpickerpreference/images/download.svg) ](https://bintray.com/devmagician/maven/colorpickerpreference/_latestVersion) [![Jitpack](https://jitpack.io/v/skydoves/ColorPickerPreference.svg)](https://jitpack.io/#skydoves/ColorPickerPreference)
+
 #### build.gradle
 ```gradle
 dependencies {
