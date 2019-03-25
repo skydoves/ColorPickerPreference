@@ -21,7 +21,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:onClick="example0"
-            app:button_duration="150"
+            app:button_duration="110"
             app:button_scale="0.8"
             app:layout_backgroundColor="@color/background800"
             app:layout_round="20">
@@ -32,6 +32,7 @@
                 android:layout_centerInParent="true"
                 android:padding="5dp"
                 android:text="ColorPicker Example"
+                android:layout_gravity="center"
                 android:textColor="@android:color/white"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -47,7 +48,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:onClick="example1"
-            app:button_duration="150"
+            app:button_duration="110"
             app:button_scale="0.8"
             app:layout_backgroundColor="@color/background800"
             app:layout_round="20">
@@ -56,8 +57,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:padding="5dp"
                 android:text="ColorPickerDialog Example"
+                android:layout_gravity="center"
                 android:textColor="@android:color/white"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -73,7 +74,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:onClick="example2"
-            app:button_duration="150"
+            app:button_duration="110"
             app:button_scale="0.8"
             app:layout_backgroundColor="@color/background800"
             app:layout_round="20">
@@ -82,8 +83,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:padding="5dp"
                 android:text="ColorPreference Example"
+                android:layout_gravity="center"
                 android:textColor="@android:color/white"
                 android:textSize="21sp"
                 android:textStyle="bold" />

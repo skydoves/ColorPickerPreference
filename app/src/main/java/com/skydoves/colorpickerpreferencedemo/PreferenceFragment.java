@@ -19,19 +19,20 @@ package com.skydoves.colorpickerpreferencedemo;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
+
 import com.skydoves.colorpickerpreference.ColorEnvelope;
 import com.skydoves.colorpickerpreference.ColorListener;
 import com.skydoves.colorpickerpreference.ColorPickerDialog;
 import com.skydoves.colorpickerpreference.ColorPickerPreference;
 import com.skydoves.colorpickerpreference.FlagMode;
 
+import androidx.preference.PreferenceFragmentCompat;
+
 /** Developed by skydoves on 2018-02-11. Copyright (c) 2018 skydoves rights reserved. */
-public class PreferenceFragment extends android.preference.PreferenceFragment {
+public class PreferenceFragment extends PreferenceFragmentCompat {
 
   @Override
-  public void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+  public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
     addPreferencesFromResource(R.xml.pref_settings);
     initColorPickerPreference();
   }
@@ -39,15 +40,13 @@ public class PreferenceFragment extends android.preference.PreferenceFragment {
   /** customizing ColorPreference's ColorPickerDialog */
   private void initColorPickerPreference() {
     ColorPickerPreference colorPickerPreference_toolbar =
-        (ColorPickerPreference)
-            findPreference(getActivity().getString(R.string.ToolbarColorPickerPreference));
+        findPreference(getActivity().getString(R.string.ToolbarColorPickerPreference));
     ColorPickerDialog.Builder builder_toolbar =
         colorPickerPreference_toolbar.getColorPickerDialogBuilder();
     builder_toolbar.setFlagView(new CustomFlag(getActivity(), R.layout.layout_flag));
 
     ColorPickerPreference colorPickerPreference_background =
-        (ColorPickerPreference)
-            findPreference(getActivity().getString(R.string.BackgroundColorPickerPreference));
+        findPreference(getActivity().getString(R.string.BackgroundColorPickerPreference));
     colorPickerPreference_background.setColorPickerDialogBuilder(getCustomBuilder());
   }
 

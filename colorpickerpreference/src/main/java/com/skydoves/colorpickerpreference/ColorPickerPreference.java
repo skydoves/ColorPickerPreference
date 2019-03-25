@@ -22,9 +22,10 @@ import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.preference.Preference;
 import android.util.AttributeSet;
 import android.view.View;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceViewHolder;
 
 @SuppressWarnings("unused")
 public class ColorPickerPreference extends Preference {
@@ -85,9 +86,9 @@ public class ColorPickerPreference extends Preference {
   }
 
   @Override
-  protected void onBindView(View view) {
-    super.onBindView(view);
-    colorBox = view.findViewById(R.id.colorpicker_preference_colorbox);
+  public void onBindViewHolder(PreferenceViewHolder holder) {
+    super.onBindViewHolder(holder);
+    colorBox = holder.findViewById(R.id.colorpicker_preference_colorbox);
     colorBox.setBackgroundColor(
         getPreferenceManager().getSharedPreferences().getInt(getKey(), default_color));
   }

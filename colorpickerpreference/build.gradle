@@ -14,7 +14,8 @@ android {
 }
 
 dependencies {
-    implementation "androidx.annotation:annotation:1.0.1"
+    implementation "androidx.annotation:annotation:1.0.2"
+    implementation "androidx.preference:preference:1.1.0-alpha04"
 }
 
 apply from: '../spotless.gradle'
