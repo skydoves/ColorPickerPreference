@@ -17,7 +17,7 @@ Could get HSV color, RGB values, Html color code from your gallery pictures or c
 #### build.gradle
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:colorpickerpreference:1.0.7"
+    implementation "com.github.skydoves:colorpickerpreference:1.0.8"
 }
 ```
 
@@ -45,9 +45,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 #### Attribute description
 ```gradle
 app:palette="@drawable/palette" // set palette image
-```
-
-```gradle
 app:selector="@drawable/wheel" // set selector image. This isn't required always. If you don't need, don't use.
 ```
 
