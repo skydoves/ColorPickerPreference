@@ -3,7 +3,7 @@ publish {
     userOrg = 'devmagician'
     groupId = 'com.github.skydoves'
     artifactId = 'colorpickerpreference'
-    publishVersion = '1.0.7'
+    publishVersion = '1.0.8'
     desc = 'This is ColorPickerPreference by skydoves'
     website = 'https://github.com/skydoves/ColorPickerPreference'
     issueTracker = "${website}/issues"
