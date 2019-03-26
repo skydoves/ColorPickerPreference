@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 apply from: '../publish.gradle'
 
 android {
@@ -13,9 +15,11 @@ android {
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "androidx.annotation:annotation:1.0.2"
     implementation "androidx.preference:preference:1.1.0-alpha04"
     api "com.github.skydoves:colorpickerview:2.1.1"
 }
 
 apply from: '../spotless.gradle'
+

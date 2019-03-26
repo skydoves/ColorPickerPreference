@@ -14,20 +14,19 @@
  * limitations under the License.
  */
 
-package com.skydoves.colorpickerpreferencedemo;
+package com.skydoves.colorpickerpreferencedemo
 
-import android.os.Bundle;
+import android.os.Bundle
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity
 
-public class PreferenceActivity extends AppCompatActivity {
+class PreferenceActivity : AppCompatActivity() {
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    getSupportFragmentManager()
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    supportFragmentManager
         .beginTransaction()
-        .replace(android.R.id.content, new PreferenceFragment())
-        .commit();
+        .replace(android.R.id.content, PreferenceFragment())
+        .commit()
   }
 }
