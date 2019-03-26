@@ -16,7 +16,6 @@
 
 package com.skydoves.colorpickerpreference;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.TypedArray;
@@ -24,6 +23,13 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.skydoves.colorpickerview.ColorEnvelope;
+import com.skydoves.colorpickerview.ColorPickerDialog;
+import com.skydoves.colorpickerview.ColorPickerView;
+import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceViewHolder;
 
@@ -111,15 +117,15 @@ public class ColorPickerPreference extends Preference {
     this.builder.setTitle(title);
     this.builder.setPositiveButton(
         positive,
-        new ColorListener() {
+        new ColorEnvelopeListener() {
           @Override
-          public void onColorSelected(ColorEnvelope colorEnvelope) {
+          public void onColorSelected(ColorEnvelope envelope, boolean fromUser) {
             if (colorBox != null) {
-              colorBox.setBackgroundColor(colorEnvelope.getColor());
+              colorBox.setBackgroundColor(envelope.getColor());
               getPreferenceManager()
                   .getSharedPreferences()
                   .edit()
-                  .putInt(getKey(), colorEnvelope.getColor())
+                  .putInt(getKey(), envelope.getColor())
                   .apply();
             }
           }
