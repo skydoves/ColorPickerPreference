@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply from: '../publish.gradle'
+apply from: '../dependencies.gradle'
 
 android {
     compileSdkVersion 28
@@ -15,10 +16,10 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.annotation:annotation:1.0.2"
-    implementation "androidx.preference:preference:1.1.0-alpha04"
-    api "com.github.skydoves:colorpickerview:2.1.1"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    implementation "androidx.annotation:annotation:$versions.annotation"
+    implementation "androidx.preference:preference:$versions.preference"
+    api "com.github.skydoves:colorpickerview:$versions.colorpickerView"
 }
 
 apply from: '../spotless.gradle'

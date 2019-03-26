@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply from: '../dependencies.gradle'
 
 android {
     compileSdkVersion 28
@@ -24,13 +25,17 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:1.0.2"
-    implementation "com.google.android.material:material:1.1.0-alpha04"
-    implementation "com.github.skydoves:elasticviews:2.0.3"
-    implementation "androidx.preference:preference:1.1.0-alpha04"
-    implementation "com.github.skydoves:powermenu:2.0.8"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    implementation "androidx.appcompat:appcompat:$versions.androidxAppcompat"
+    implementation "com.github.skydoves:elasticviews:$versions.elasticViews"
+    implementation "androidx.preference:preference:$versions.preference"
+    implementation "com.github.skydoves:powermenu:$versions.powerMenu"
     implementation project(":colorpickerpreference")
+}
+
+tasks.withType(Javadoc) {
+    excludes = ['**/*.kt']
+    options.addBooleanOption('Xdoclint:none', true)
 }
 
 apply from: '../spotless.gradle'

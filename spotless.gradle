@@ -3,7 +3,7 @@ spotless {
     java {
         target "**/*.java"
         trimTrailingWhitespace()
-        licenseHeaderFile '../spotless.license.java'
+        licenseHeaderFile '../spotless.license.kt'
         removeUnusedImports()
         googleJavaFormat()
         endWithNewline()
@@ -11,7 +11,7 @@ spotless {
     kotlin {
         target "**/*.kt"
         ktlint().userData(['indent_size': '2', 'continuation_indent_size': '2'])
-        licenseHeaderFile '../spotless.license.java'
+        licenseHeaderFile '../spotless.license.kt'
         trimTrailingWhitespace()
         endWithNewline()
     }
