@@ -19,14 +19,15 @@ package com.skydoves.colorpickerpreferencedemo;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import androidx.preference.PreferenceFragmentCompat;
-import com.skydoves.colorpickerpreference.ColorEnvelope;
-import com.skydoves.colorpickerpreference.ColorListener;
-import com.skydoves.colorpickerpreference.ColorPickerDialog;
-import com.skydoves.colorpickerpreference.ColorPickerPreference;
-import com.skydoves.colorpickerpreference.FlagMode;
 
-/** Developed by skydoves on 2018-02-11. Copyright (c) 2018 skydoves rights reserved. */
+import com.skydoves.colorpickerpreference.ColorPickerPreference;
+import com.skydoves.colorpickerview.ColorEnvelope;
+import com.skydoves.colorpickerview.ColorPickerDialog;
+import com.skydoves.colorpickerview.flag.FlagMode;
+import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
+
+import androidx.preference.PreferenceFragmentCompat;
+
 public class PreferenceFragment extends PreferenceFragmentCompat {
 
   @Override
@@ -41,7 +42,7 @@ public class PreferenceFragment extends PreferenceFragmentCompat {
         findPreference(getActivity().getString(R.string.ToolbarColorPickerPreference));
     ColorPickerDialog.Builder builder_toolbar =
         colorPickerPreference_toolbar.getColorPickerDialogBuilder();
-    builder_toolbar.setFlagView(new CustomFlag(getActivity(), R.layout.layout_flag));
+    builder_toolbar.getColorPickerView().setFlagView(new CustomFlag(getActivity(), R.layout.layout_flag));
 
     ColorPickerPreference colorPickerPreference_background =
         findPreference(getActivity().getString(R.string.BackgroundColorPickerPreference));
@@ -52,12 +53,13 @@ public class PreferenceFragment extends PreferenceFragmentCompat {
     ColorPickerDialog.Builder builder =
         new ColorPickerDialog.Builder(getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_DARK);
     builder.setTitle("ColorPicker Dialog");
-    builder.setFlagView(new CustomFlag(getActivity(), R.layout.layout_flag));
+    builder.getColorPickerView().setFlagView(new CustomFlag(getActivity(), R.layout.layout_flag));
     builder.setPositiveButton(
         getString(R.string.confirm),
-        new ColorListener() {
-          @Override
-          public void onColorSelected(ColorEnvelope colorEnvelope) {}
+        new ColorEnvelopeListener() {
+            @Override
+            public void onColorSelected(ColorEnvelope envelope, boolean fromUser) {
+            }
         });
     builder.setNegativeButton(
         getString(R.string.cancel),
@@ -68,7 +70,7 @@ public class PreferenceFragment extends PreferenceFragmentCompat {
           }
         });
 
-    builder.getColorPickerView().setFlagMode(FlagMode.LAST);
+    builder.getColorPickerView().getFlagView().setFlagMode(FlagMode.LAST);
     return builder;
   }
 }

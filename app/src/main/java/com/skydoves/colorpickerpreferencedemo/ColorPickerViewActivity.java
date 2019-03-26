@@ -17,73 +17,128 @@
 package com.skydoves.colorpickerpreferencedemo;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.core.content.ContextCompat;
-import com.skydoves.colorpickerpreference.ColorEnvelope;
-import com.skydoves.colorpickerpreference.ColorListener;
-import com.skydoves.colorpickerpreference.ColorPickerView;
 
-/** Developed by skydoves on 2018-02-11. Copyright (c) 2018 skydoves rights reserved. */
-public class ColorPickerViewActivity extends BaseActivity {
+import com.skydoves.colorpickerview.AlphaTileView;
+import com.skydoves.colorpickerview.ColorEnvelope;
+import com.skydoves.colorpickerview.ColorPickerDialog;
+import com.skydoves.colorpickerview.ColorPickerView;
+import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener;
+import com.skydoves.colorpickerview.sliders.AlphaSlideBar;
+import com.skydoves.colorpickerview.sliders.BrightnessSlideBar;
+import com.skydoves.powermenu.OnMenuItemClickListener;
+import com.skydoves.powermenu.PowerMenu;
+import com.skydoves.powermenu.PowerMenuItem;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+@SuppressWarnings("ConstantConditions")
+public class ColorPickerViewActivity extends AppCompatActivity {
 
   private ColorPickerView colorPickerView;
 
   private boolean FLAG_PALETTE = false;
   private boolean FLAG_SELECTOR = false;
 
+  private PowerMenu powerMenu;
+  private OnMenuItemClickListener<PowerMenuItem> powerMenuItemClickListener =
+      new OnMenuItemClickListener<PowerMenuItem>() {
+        @Override
+        public void onItemClick(int position, PowerMenuItem item) {
+          switch (position) {
+            case 1:
+              palette();
+              break;
+            case 2:
+              paletteFromGallery();
+              break;
+            case 3:
+              selector();
+              break;
+            case 4:
+              dialog();
+              break;
+          }
+          powerMenu.dismiss();
+        }
+      };
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_color_picker_view);
-    setToolbarTitle("ColorPickerViewActivity");
+
+    powerMenu = PowerMenuUtils.getPowerMenu(this, this, powerMenuItemClickListener);
 
     colorPickerView = findViewById(R.id.colorPickerView);
-    colorPickerView.setFlagView(new CustomFlag(this, R.layout.layout_flag));
-    colorPickerView.setPreferenceName("MyColorPickerView"); // set PreferenceName, and restore
     colorPickerView.setColorListener(
-        new ColorListener() {
+        new ColorEnvelopeListener() {
           @Override
-          public void onColorSelected(ColorEnvelope colorEnvelope) {
-            setLayoutColor(colorEnvelope.getColor());
+          public void onColorSelected(ColorEnvelope envelope, boolean fromUser) {
+            setLayoutColor(envelope);
           }
         });
+
+    // attach alphaSlideBar
+    final AlphaSlideBar alphaSlideBar = findViewById(R.id.alphaSlideBar);
+    colorPickerView.attachAlphaSlider(alphaSlideBar);
+
+    // attach brightnessSlideBar
+    final BrightnessSlideBar brightnessSlideBar = findViewById(R.id.brightnessSlide);
+    colorPickerView.attachBrightnessSlider(brightnessSlideBar);
+    colorPickerView.setLifecycleOwner(this);
   }
 
   /**
    * set layout color & textView html code
    *
-   * @param color selected color
+   * @param envelope ColorEnvelope by ColorEnvelopeListener
    */
   @SuppressLint("SetTextI18n")
-  private void setLayoutColor(int color) {
+  private void setLayoutColor(ColorEnvelope envelope) {
     TextView textView = findViewById(R.id.textView);
-    textView.setText("#" + colorPickerView.getColorHtml());
+    textView.setText("#" + envelope.getHexCode());
 
-    LinearLayout linearLayout = findViewById(R.id.linearLayout);
-    linearLayout.setBackgroundColor(color);
+    AlphaTileView alphaTileView = findViewById(R.id.alphaTileView);
+    alphaTileView.setPaintColor(envelope.getColor());
   }
 
-  /**
-   * change palette drawable resource you must initialize at first in xml
-   *
-   * @param v view
-   */
-  public void palette(View v) {
+  /** shows the popup menu for changing options.. */
+  public void overflowMenu(View view) {
+    powerMenu.showAsAnchorLeftTop(view);
+  }
+
+  /** changes palette image using drawable resource. */
+  private void palette() {
     if (FLAG_PALETTE)
       colorPickerView.setPaletteDrawable(ContextCompat.getDrawable(this, R.drawable.palette));
     else colorPickerView.setPaletteDrawable(ContextCompat.getDrawable(this, R.drawable.palettebar));
     FLAG_PALETTE = !FLAG_PALETTE;
   }
 
-  /**
-   * change selector drawable resource you must initialize at first in xml
-   *
-   * @param v view
-   */
-  public void selector(View v) {
+  /** changes palette image from a gallery image. */
+  private void paletteFromGallery() {
+    Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+    photoPickerIntent.setType("image/*");
+    startActivityForResult(photoPickerIntent, 1000);
+  }
+
+  /** changes selector image using drawable resource. */
+  private void selector() {
     if (FLAG_SELECTOR)
       colorPickerView.setSelectorDrawable(ContextCompat.getDrawable(this, R.drawable.wheel));
     else
@@ -91,21 +146,55 @@ public class ColorPickerViewActivity extends BaseActivity {
     FLAG_SELECTOR = !FLAG_SELECTOR;
   }
 
-  /**
-   * moving selector's points (x, y)
-   *
-   * @param v view
-   */
-  public void points(View v) {
-    int x = (int) (Math.random() * 600) + 100;
-    int y = (int) (Math.random() * 400) + 150;
-    colorPickerView.setSelectorPoint(x, y);
+  /** shows ColorPickerDialog */
+  private void dialog() {
+    ColorPickerDialog.Builder builder =
+        new ColorPickerDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+            .setTitle("ColorPicker Dialog")
+            .setPreferenceName("Test")
+            .setPositiveButton(
+                getString(R.string.confirm),
+                new ColorEnvelopeListener() {
+                  @Override
+                  public void onColorSelected(ColorEnvelope envelope, boolean fromUser) {
+                    setLayoutColor(envelope);
+                  }
+                })
+            .setNegativeButton(
+                getString(R.string.cancel),
+                new DialogInterface.OnClickListener() {
+                  @Override
+                  public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                  }
+                });
+    ColorPickerView colorPickerView = builder.getColorPickerView();
+    colorPickerView.setFlagView(new CustomFlag(this, R.layout.layout_flag));
+    builder.show();
   }
 
-  /** save selector's positions & the last select color */
   @Override
-  protected void onDestroy() {
-    super.onDestroy();
-    colorPickerView.saveData();
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+
+    // user choose a picture from gallery
+    if (requestCode == 1000 && resultCode == RESULT_OK) {
+      try {
+        final Uri imageUri = data.getData();
+        final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+        final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+        Drawable drawable = new BitmapDrawable(getResources(), selectedImage);
+        colorPickerView.setPaletteDrawable(drawable);
+      } catch (FileNotFoundException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+
+  @Override
+  public void onBackPressed() {
+    if (powerMenu.isShowing()) powerMenu.dismiss();
+    else super.onBackPressed();
   }
 }
+

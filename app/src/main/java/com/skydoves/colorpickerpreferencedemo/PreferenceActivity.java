@@ -17,9 +17,9 @@
 package com.skydoves.colorpickerpreferencedemo;
 
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-/** Developed by skydoves on 2018-02-11. Copyright (c) 2018 skydoves rights reserved. */
 public class PreferenceActivity extends AppCompatActivity {
 
   @Override

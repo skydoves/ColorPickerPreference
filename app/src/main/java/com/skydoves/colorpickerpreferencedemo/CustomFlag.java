@@ -16,13 +16,15 @@
 
 package com.skydoves.colorpickerpreferencedemo;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
-import com.skydoves.colorpickerpreference.ColorEnvelope;
-import com.skydoves.colorpickerpreference.FlagView;
 
-/** Developed by skydoves on 2018-02-11. Copyright (c) 2018 skydoves rights reserved. */
+import com.skydoves.colorpickerview.ColorEnvelope;
+import com.skydoves.colorpickerview.flag.FlagView;
+
+@SuppressLint("ViewConstructor")
 public class CustomFlag extends FlagView {
 
   private TextView textView;
@@ -47,7 +49,7 @@ public class CustomFlag extends FlagView {
    */
   @Override
   public void onRefresh(ColorEnvelope colorEnvelope) {
-    textView.setText("#" + colorEnvelope.getColorHtml());
+    textView.setText("#" + colorEnvelope.getHexCode());
     view.setBackgroundColor(colorEnvelope.getColor());
   }
 }

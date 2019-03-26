@@ -26,7 +26,8 @@ dependencies {
     implementation "com.google.android.material:material:1.1.0-alpha04"
     implementation "com.github.skydoves:elasticviews:2.0.3"
     implementation "androidx.preference:preference:1.1.0-alpha04"
-    implementation project(':colorpickerpreference')
+    implementation "com.github.skydoves:powermenu:2.0.8"
+    implementation project(":colorpickerpreference")
 }
 
 apply from: '../spotless.gradle'

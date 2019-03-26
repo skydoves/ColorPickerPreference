@@ -22,6 +22,9 @@ import android.preference.PreferenceActivity;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.jetbrains.annotations.NotNull;
+
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -58,6 +61,7 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity {
     getDelegate().setSupportActionBar(toolbar);
   }
 
+  @NotNull
   @Override
   public MenuInflater getMenuInflater() {
     return getDelegate().getMenuInflater();
