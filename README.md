@@ -383,6 +383,7 @@ getColorPickerDialogBuilder() | ColorPickerDialog.Builder | returns ColorPickerD
 - [Android Weekly #297](http://androidweekly.net/issues/issue-297)
 - [25 new Android libraries, projects and tools worthy to check in Spring 2018](https://medium.com/@mmbialas/25-new-android-libraries-projects-and-tools-worthy-to-check-in-spring-2018-68e3c5e93568)
 - [Colour Wheel – Part 1](https://blog.stylingandroid.com/colour-wheel-part-1)
+- [Using ColorPickerPreference library in Android Studio - Youtube](https://www.youtube.com/watch?v=_q7a0EPbGvU)
 
 ## Find this library useful? :heart:
 Support it by joining [stargazers](https://github.com/skydoves/ColorPickerPreference/stargazers) for this repository. :star:
