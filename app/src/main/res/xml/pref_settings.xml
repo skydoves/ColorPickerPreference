@@ -1,39 +1,44 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="notifications_new_message_vibrate"
-        android:title="vibrate" />
+  <androidx.preference.SwitchPreference
+    android:defaultValue="true"
+    android:key="notifications_new_message_vibrate"
+    android:title="vibrate"
+    app:iconSpaceReserved="false" />
 
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="notifications_new_message_notification"
-        android:title="notification" />
+  <androidx.preference.SwitchPreference
+    android:defaultValue="true"
+    android:key="notifications_new_message_notification"
+    android:title="notification"
+    app:iconSpaceReserved="false" />
 
-    <com.skydoves.colorpickerpreference.ColorPickerPreference
-        android:key="@string/ToolbarColorPickerPreference"
-        android:summary="changes toolbar color"
-        android:title="Toolbar Color"
-        app:default_color="@color/colorPrimary"
-        app:preference_dialog_negative="@string/cancel"
-        app:preference_dialog_positive="@string/confirm"
-        app:preference_dialog_title="Toolbar ColorPickerDialog"
-        app:preference_palette="@drawable/palettebar"
-        app:preference_selector="@drawable/wheel" />
+  <com.skydoves.colorpickerpreference.ColorPickerPreference
+    android:key="@string/ToolbarColorPickerPreference"
+    android:summary="changes toolbar color"
+    android:title="Toolbar Color"
+    app:default_color="@color/colorPrimary"
+    app:iconSpaceReserved="false"
+    app:preference_dialog_negative="@string/cancel"
+    app:preference_dialog_positive="@string/confirm"
+    app:preference_dialog_title="Toolbar ColorPickerDialog"
+    app:preference_palette="@drawable/palettebar"
+    app:preference_selector="@drawable/wheel" />
 
-    <com.skydoves.colorpickerpreference.ColorPickerPreference
-        android:key="@string/BackgroundColorPickerPreference"
-        android:summary="changes background color"
-        android:title="Background Color"
-        app:default_color="@color/background"
-        app:preference_dialog_negative="@string/cancel"
-        app:preference_dialog_positive="@string/confirm"
-        app:preference_dialog_title="Background ColorPickerDialog"
-        app:preference_palette="@drawable/palette"
-        app:preference_selector="@drawable/wheel" />
+  <com.skydoves.colorpickerpreference.ColorPickerPreference
+    android:key="@string/BackgroundColorPickerPreference"
+    android:summary="changes background color"
+    android:title="Background Color"
+    app:default_color="@color/md_yellow_A700"
+    app:iconSpaceReserved="false"
+    app:preference_dialog_negative="@string/cancel"
+    app:preference_dialog_positive="@string/confirm"
+    app:preference_dialog_title="Background ColorPickerDialog"
+    app:preference_palette="@drawable/palette"
+    app:preference_selector="@drawable/wheel" />
 
-    <Preference
-        android:summary="skydoves"
-        android:title="github" />
-</PreferenceScreen>
+  <androidx.preference.Preference
+    android:summary="skydoves"
+    android:title="GitHub"
+    app:iconSpaceReserved="false" />
+</androidx.preference.PreferenceScreen>

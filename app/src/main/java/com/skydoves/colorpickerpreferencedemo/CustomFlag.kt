@@ -23,6 +23,7 @@ import android.widget.TextView
 
 import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.colorpickerview.flag.FlagView
+
 /**
  * onBind Views
  *

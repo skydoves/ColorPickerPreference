@@ -18,6 +18,7 @@ package com.skydoves.colorpickerpreferencedemo
 
 import android.content.Context
 import android.graphics.Color
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import com.skydoves.powermenu.MenuAnimation
 import com.skydoves.powermenu.MenuEffect
@@ -32,21 +33,21 @@ object PowerMenuUtils {
     onMenuItemClickListener: OnMenuItemClickListener<PowerMenuItem>
   ): PowerMenu {
     return PowerMenu.Builder(context)
-        .setHeaderView(R.layout.layout_header)
-        .addItem(PowerMenuItem("Palette", false))
-        .addItem(PowerMenuItem("Palette(Gallery)", false))
-        .addItem(PowerMenuItem("Selector", false))
-        .addItem(PowerMenuItem("Dialog", false))
-        .setLifecycleOwner(lifecycleOwner)
-        .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT)
-        .setMenuEffect(MenuEffect.BODY)
-        .setMenuRadius(10f)
-        .setMenuShadow(10f)
-        .setTextColor(context.resources.getColor(R.color.md_grey_800))
-        .setSelectedEffect(false)
-        .setShowBackground(false)
-        .setMenuColor(Color.WHITE)
-        .setOnMenuItemClickListener(onMenuItemClickListener)
-        .build()
+      .setHeaderView(R.layout.layout_header)
+      .addItem(PowerMenuItem("Palette", false))
+      .addItem(PowerMenuItem("Palette(Gallery)", false))
+      .addItem(PowerMenuItem("Selector", false))
+      .addItem(PowerMenuItem("Dialog", false))
+      .setLifecycleOwner(lifecycleOwner)
+      .setAnimation(MenuAnimation.SHOWUP_TOP_LEFT)
+      .setMenuEffect(MenuEffect.BODY)
+      .setMenuRadius(10f)
+      .setMenuShadow(10f)
+      .setTextColor(ContextCompat.getColor(context, R.color.md_grey_800))
+      .setSelectedEffect(false)
+      .setShowBackground(false)
+      .setMenuColor(Color.WHITE)
+      .setOnMenuItemClickListener(onMenuItemClickListener)
+      .build()
   }
 }

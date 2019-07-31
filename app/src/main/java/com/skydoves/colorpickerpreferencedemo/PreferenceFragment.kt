@@ -33,32 +33,28 @@ class PreferenceFragment : PreferenceFragmentCompat() {
       builder.setTitle("ColorPicker Dialog")
       builder.colorPickerView.flagView = CustomFlag(activity!!.baseContext, R.layout.layout_flag)
       builder.setPositiveButton(
-          getString(R.string.confirm),
-          ColorEnvelopeListener { _, _ -> })
+        getString(R.string.confirm),
+        ColorEnvelopeListener { _, _ -> })
       builder.setNegativeButton(
-          getString(R.string.cancel)
+        getString(R.string.cancel)
       ) { dialogInterface, _ -> dialogInterface.dismiss() }
 
       builder.colorPickerView.flagView.flagMode = FlagMode.LAST
       return builder
     }
 
-  override fun onCreatePreferences(savedInstanceState: Bundle, rootKey: String) {
+  override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
     addPreferencesFromResource(R.xml.pref_settings)
     initColorPickerPreference()
   }
 
-  /** customizing ColorPreference's ColorPickerDialog  */
+  /** customizes [ColorPickerPreference]'s [ColorPickerDialog]. */
   private fun initColorPickerPreference() {
     val colorPickerPreference_toolbar = findPreference<ColorPickerPreference>(activity!!.getString(R.string.ToolbarColorPickerPreference))!!
-    val builder_toolbar = colorPickerPreference_toolbar.colorPickerDialogBuilder
-    if (builder_toolbar != null) {
-      builder_toolbar.colorPickerView.flagView = CustomFlag(activity!!.baseContext, R.layout.layout_flag)
-    }
+    val builder_toolbar = colorPickerPreference_toolbar.getDialogBuilder()
+    builder_toolbar.colorPickerView.flagView = CustomFlag(activity!!.baseContext, R.layout.layout_flag)
 
     val colorPickerPreference_background = findPreference<ColorPickerPreference>(activity!!.getString(R.string.BackgroundColorPickerPreference))
-    if (colorPickerPreference_background != null) {
-      colorPickerPreference_background.colorPickerDialogBuilder = customBuilder
-    }
+    colorPickerPreference_background?.colorPickerDialogBuilder(customBuilder)
   }
 }

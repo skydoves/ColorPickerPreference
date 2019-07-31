@@ -31,36 +31,10 @@ import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 @Suppress("unused")
 class ColorPickerPreference : Preference {
 
-  private var colorBox: View? = null
-  var colorPickerDialogBuilder: ColorPickerDialog.Builder? = null
-    set(builder) {
-      field = builder
-      this.colorPickerDialogBuilder!!.setTitle(title)
-      this.colorPickerDialogBuilder!!.setPositiveButton(
-          positive,
-          ColorEnvelopeListener { envelope, _ ->
-            if (colorBox != null) {
-              colorBox!!.setBackgroundColor(envelope.color)
-              preferenceManager
-                  .sharedPreferences
-                  .edit()
-                  .putInt(key, envelope.color)
-                  .apply()
-            }
-          })
-      this.colorPickerDialogBuilder!!.setNegativeButton(
-          negative
-      ) { dialogInterface, _ -> dialogInterface.dismiss() }
-      builder?.colorPickerView?.let {
-        it.setPaletteDrawable(paletteDrawable!!)
-        it.setSelectorDrawable(selectorDrawable!!)
-        it.preferenceName = key
-      }
-      this.alertDialog = builder?.create()
-    }
-
-  private var alertDialog: AlertDialog? = null
-  private var defaultColor: Int = 0
+  private lateinit var colorBox: View
+  private lateinit var colorPickerDialogBuilder: ColorPickerDialog.Builder
+  private lateinit var alertDialog: AlertDialog
+  private var defaultColor: Int = Color.BLACK
   private var paletteDrawable: Drawable? = null
   private var selectorDrawable: Drawable? = null
   private var title: String? = null
@@ -89,8 +63,35 @@ class ColorPickerPreference : Preference {
     setTypeArray(typedArray)
   }
 
+  fun colorPickerDialogBuilder(builder: ColorPickerDialog.Builder) {
+    this.colorPickerDialogBuilder = builder
+    with(this.colorPickerDialogBuilder) {
+      setTitle(title)
+      setPositiveButton(positive,
+        ColorEnvelopeListener { envelope, _ ->
+          colorBox.setBackgroundColor(envelope.color)
+          preferenceManager
+            .sharedPreferences
+            .edit()
+            .putInt(key, envelope.color)
+            .apply()
+        })
+      setNegativeButton(negative) { dialogInterface, _ -> dialogInterface.dismiss() }
+      with(colorPickerView) {
+        paletteDrawable?.let { setPaletteDrawable(it) }
+        selectorDrawable?.let { setSelectorDrawable(it) }
+        preferenceName = key
+      }
+    }
+    this.alertDialog = colorPickerDialogBuilder.create()
+  }
+
+  fun getDialogBuilder(): ColorPickerDialog.Builder {
+    return this.colorPickerDialogBuilder
+  }
+
   private fun setTypeArray(typedArray: TypedArray) {
-    defaultColor = typedArray.getColor(R.styleable.ColorPickerPreference_default_color, Color.BLACK)
+    defaultColor = typedArray.getColor(R.styleable.ColorPickerPreference_default_color, defaultColor)
     paletteDrawable = typedArray.getDrawable(R.styleable.ColorPickerPreference_preference_palette)
     selectorDrawable = typedArray.getDrawable(R.styleable.ColorPickerPreference_preference_selector)
     title = typedArray.getString(R.styleable.ColorPickerPreference_preference_dialog_title)
@@ -100,20 +101,22 @@ class ColorPickerPreference : Preference {
 
   private fun onInit() {
     widgetLayoutResource = R.layout.layout_colorpicker_preference
-    colorPickerDialogBuilder = ColorPickerDialog.Builder(context)
+    colorPickerDialogBuilder(ColorPickerDialog.Builder(context))
   }
 
   override fun onBindViewHolder(holder: PreferenceViewHolder) {
     super.onBindViewHolder(holder)
     colorBox = holder.findViewById(R.id.colorpicker_preference_colorbox)
-    colorBox!!.setBackgroundColor(
+    if (key != null) {
+      colorBox.setBackgroundColor(
         preferenceManager.sharedPreferences.getInt(key, defaultColor))
+    } else {
+      colorBox.setBackgroundColor(defaultColor)
+    }
   }
 
   override fun onClick() {
     super.onClick()
-    if (alertDialog != null) {
-      alertDialog!!.show()
-    }
+    this.alertDialog.show()
   }
 }

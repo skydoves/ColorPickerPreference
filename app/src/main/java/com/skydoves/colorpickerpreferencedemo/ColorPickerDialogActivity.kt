@@ -40,7 +40,7 @@ class ColorPickerDialogActivity : BaseActivity() {
         .setPreferenceName("Test")
         .setPositiveButton(
             getString(R.string.confirm),
-            ColorEnvelopeListener { envelope, fromUser -> setLayoutColor(envelope) })
+            ColorEnvelopeListener { envelope, _ -> setLayoutColor(envelope) })
         .setNegativeButton(
             getString(R.string.cancel)
         ) { dialogInterface, i -> dialogInterface.dismiss() }

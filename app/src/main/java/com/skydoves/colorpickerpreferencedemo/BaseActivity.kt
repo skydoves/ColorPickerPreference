@@ -19,13 +19,13 @@ package com.skydoves.colorpickerpreferencedemo
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.preference.PreferenceManager
 
 @SuppressLint("Registered")
 open class BaseActivity : AppCompatActivity() {
@@ -56,17 +56,17 @@ open class BaseActivity : AppCompatActivity() {
   private fun setToolbarColor() {
     val toolbar = findViewById<Toolbar>(R.id.toolbar)
     toolbar.setBackgroundColor(
-        sharedPreferences!!.getInt(
-            getString(R.string.ToolbarColorPickerPreference),
-            ContextCompat.getColor(baseContext, R.color.colorPrimary)))
+      sharedPreferences!!.getInt(
+        getString(R.string.ToolbarColorPickerPreference),
+        ContextCompat.getColor(baseContext, R.color.colorPrimary)))
   }
 
   /** set background color from DefaultSharedPreferences(PreferenceScreen)  */
   private fun setBackgroundColor() {
     val view = findViewById<View>(R.id.layout_background)
     view?.setBackgroundColor(
-        sharedPreferences!!.getInt(
-            getString(R.string.BackgroundColorPickerPreference),
-            ContextCompat.getColor(baseContext, R.color.background)))
+      sharedPreferences!!.getInt(
+        getString(R.string.BackgroundColorPickerPreference),
+        ContextCompat.getColor(baseContext, R.color.background)))
   }
 }

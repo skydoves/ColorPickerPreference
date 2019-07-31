@@ -24,9 +24,10 @@ class PreferenceActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
     supportFragmentManager
-        .beginTransaction()
-        .replace(android.R.id.content, PreferenceFragment())
-        .commit()
+      .beginTransaction()
+      .replace(android.R.id.content, PreferenceFragment())
+      .commit()
   }
 }

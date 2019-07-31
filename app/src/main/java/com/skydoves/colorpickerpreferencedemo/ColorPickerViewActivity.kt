@@ -66,7 +66,7 @@ class ColorPickerViewActivity : AppCompatActivity() {
 
     colorPickerView = findViewById(R.id.colorPickerView)
     colorPickerView!!.setColorListener(
-        ColorEnvelopeListener { envelope, _ -> setLayoutColor(envelope) })
+      ColorEnvelopeListener { envelope, _ -> setLayoutColor(envelope) })
 
     // attach alphaSlideBar
     val alphaSlideBar = findViewById<AlphaSlideBar>(R.id.alphaSlideBar)
@@ -125,14 +125,14 @@ class ColorPickerViewActivity : AppCompatActivity() {
   /** shows ColorPickerDialog  */
   private fun dialog() {
     val builder = ColorPickerDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
-        .setTitle("ColorPicker Dialog")
-        .setPreferenceName("Test")
-        .setPositiveButton(
-            getString(R.string.confirm),
-            ColorEnvelopeListener { envelope, _ -> setLayoutColor(envelope) })
-        .setNegativeButton(
-            getString(R.string.cancel)
-        ) { dialogInterface, _ -> dialogInterface.dismiss() }
+      .setTitle("ColorPicker Dialog")
+      .setPreferenceName("Test")
+      .setPositiveButton(
+        getString(R.string.confirm),
+        ColorEnvelopeListener { envelope, _ -> setLayoutColor(envelope) })
+      .setNegativeButton(
+        getString(R.string.cancel)
+      ) { dialogInterface, _ -> dialogInterface.dismiss() }
     val colorPickerView = builder.colorPickerView
     colorPickerView.flagView = CustomFlag(this, R.layout.layout_flag)
     builder.show()
