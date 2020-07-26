@@ -20,11 +20,11 @@
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="1"
+      android:background="@color/background800"
       android:onClick="example0"
-      app:button_duration="110"
-      app:button_scale="0.8"
-      app:layout_backgroundColor="@color/background800"
-      app:layout_round="20">
+      app:layout_cornerRadius="8dp"
+      app:layout_duration="110"
+      app:layout_scale="0.8">
 
       <TextView
         android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
         android:textStyle="bold" />
     </com.skydoves.elasticviews.ElasticLayout>
 
-    <androidx.legacy.widget.Space
+    <Space
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="0.1" />
@@ -47,11 +47,11 @@
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="1"
+      android:background="@color/background800"
       android:onClick="example1"
-      app:button_duration="110"
-      app:button_scale="0.8"
-      app:layout_backgroundColor="@color/background800"
-      app:layout_round="20">
+      app:layout_cornerRadius="8dp"
+      app:layout_duration="110"
+      app:layout_scale="0.8">
 
       <TextView
         android:layout_width="wrap_content"
@@ -64,7 +64,7 @@
         android:textStyle="bold" />
     </com.skydoves.elasticviews.ElasticLayout>
 
-    <androidx.legacy.widget.Space
+    <Space
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="0.1" />
@@ -73,11 +73,11 @@
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="1"
+      android:background="@color/background800"
       android:onClick="example2"
-      app:button_duration="110"
-      app:button_scale="0.8"
-      app:layout_backgroundColor="@color/background800"
-      app:layout_round="20">
+      app:layout_cornerRadius="8dp"
+      app:layout_duration="110"
+      app:layout_scale="0.8">
 
       <TextView
         android:layout_width="wrap_content"

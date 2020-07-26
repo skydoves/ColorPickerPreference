@@ -30,7 +30,6 @@ import androidx.core.content.ContextCompat
 import com.skydoves.colorpickerview.AlphaTileView
 import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.colorpickerview.ColorPickerDialog
-import com.skydoves.colorpickerview.ColorPickerView
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 import com.skydoves.colorpickerview.sliders.AlphaSlideBar
 import com.skydoves.colorpickerview.sliders.BrightnessSlideBar
@@ -38,16 +37,16 @@ import com.skydoves.powermenu.OnMenuItemClickListener
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
 import java.io.FileNotFoundException
+import kotlinx.android.synthetic.main.activity_color_picker_view.*
 
-@Suppress("PrivatePropertyName")
 class ColorPickerViewActivity : AppCompatActivity() {
 
-  private var colorPickerView: ColorPickerView? = null
+  private var flagPalette = false
+  private var flagSelector = false
 
-  private var FLAG_PALETTE = false
-  private var FLAG_SELECTOR = false
-
-  private var powerMenu: PowerMenu? = null
+  private val powerMenu: PowerMenu by lazy {
+    PowerMenuUtils.getPowerMenu(this, this, powerMenuItemClickListener)
+  }
   private val powerMenuItemClickListener = OnMenuItemClickListener<PowerMenuItem> { position, _ ->
     when (position) {
       1 -> palette()
@@ -55,27 +54,24 @@ class ColorPickerViewActivity : AppCompatActivity() {
       3 -> selector()
       4 -> dialog()
     }
-    powerMenu!!.dismiss()
+    powerMenu.dismiss()
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_color_picker_view)
 
-    powerMenu = PowerMenuUtils.getPowerMenu(this, this, powerMenuItemClickListener)
-
-    colorPickerView = findViewById(R.id.colorPickerView)
-    colorPickerView!!.setColorListener(
+    colorPickerView.setColorListener(
       ColorEnvelopeListener { envelope, _ -> setLayoutColor(envelope) })
 
     // attach alphaSlideBar
     val alphaSlideBar = findViewById<AlphaSlideBar>(R.id.alphaSlideBar)
-    colorPickerView!!.attachAlphaSlider(alphaSlideBar)
+    colorPickerView.attachAlphaSlider(alphaSlideBar)
 
     // attach brightnessSlideBar
     val brightnessSlideBar = findViewById<BrightnessSlideBar>(R.id.brightnessSlide)
-    colorPickerView!!.attachBrightnessSlider(brightnessSlideBar)
-    colorPickerView!!.setLifecycleOwner(this)
+    colorPickerView.attachBrightnessSlider(brightnessSlideBar)
+    colorPickerView.setLifecycleOwner(this)
   }
 
   /**
@@ -94,16 +90,16 @@ class ColorPickerViewActivity : AppCompatActivity() {
 
   /** shows the popup menu for changing options..  */
   fun overflowMenu(view: View) {
-    powerMenu!!.showAsAnchorLeftTop(view)
+    powerMenu.showAsAnchorLeftTop(view)
   }
 
   /** changes palette image using drawable resource.  */
   private fun palette() {
-    if (FLAG_PALETTE)
-      colorPickerView!!.setPaletteDrawable(ContextCompat.getDrawable(this, R.drawable.palette)!!)
+    if (flagPalette)
+      colorPickerView.setPaletteDrawable(ContextCompat.getDrawable(this, R.drawable.palette)!!)
     else
-      colorPickerView!!.setPaletteDrawable(ContextCompat.getDrawable(this, R.drawable.palettebar)!!)
-    FLAG_PALETTE = !FLAG_PALETTE
+      colorPickerView.setPaletteDrawable(ContextCompat.getDrawable(this, R.drawable.palettebar)!!)
+    flagPalette = !flagPalette
   }
 
   /** changes palette image from a gallery image.  */
@@ -115,11 +111,11 @@ class ColorPickerViewActivity : AppCompatActivity() {
 
   /** changes selector image using drawable resource.  */
   private fun selector() {
-    if (FLAG_SELECTOR)
-      colorPickerView!!.setSelectorDrawable(ContextCompat.getDrawable(this, R.drawable.wheel)!!)
+    if (flagSelector)
+      colorPickerView.setSelectorDrawable(ContextCompat.getDrawable(this, R.drawable.wheel)!!)
     else
-      colorPickerView!!.setSelectorDrawable(ContextCompat.getDrawable(this, R.drawable.wheel_dark)!!)
-    FLAG_SELECTOR = !FLAG_SELECTOR
+      colorPickerView.setSelectorDrawable(ContextCompat.getDrawable(this, R.drawable.wheel_dark)!!)
+    flagSelector = !flagSelector
   }
 
   /** shows ColorPickerDialog  */
@@ -148,7 +144,7 @@ class ColorPickerViewActivity : AppCompatActivity() {
         val imageStream = contentResolver.openInputStream(imageUri!!)
         val selectedImage = BitmapFactory.decodeStream(imageStream)
         val drawable = BitmapDrawable(resources, selectedImage)
-        colorPickerView!!.setPaletteDrawable(drawable)
+        colorPickerView.setPaletteDrawable(drawable)
       } catch (e: FileNotFoundException) {
         e.printStackTrace()
       }
@@ -156,8 +152,8 @@ class ColorPickerViewActivity : AppCompatActivity() {
   }
 
   override fun onBackPressed() {
-    if (powerMenu!!.isShowing)
-      powerMenu!!.dismiss()
+    if (powerMenu.isShowing)
+      powerMenu.dismiss()
     else
       super.onBackPressed()
   }

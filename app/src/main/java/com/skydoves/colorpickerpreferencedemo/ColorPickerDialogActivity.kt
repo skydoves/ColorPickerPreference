@@ -27,7 +27,6 @@ import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 
 class ColorPickerDialogActivity : BaseActivity() {
 
-  @SuppressLint("SetTextI18n")
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_color_picker_dialog)
@@ -36,14 +35,14 @@ class ColorPickerDialogActivity : BaseActivity() {
 
   fun showDialog(view: View) {
     val builder = ColorPickerDialog.Builder(this)
-        .setTitle("ColorPicker Dialog")
-        .setPreferenceName("Test")
-        .setPositiveButton(
-            getString(R.string.confirm),
-            ColorEnvelopeListener { envelope, _ -> setLayoutColor(envelope) })
-        .setNegativeButton(
-            getString(R.string.cancel)
-        ) { dialogInterface, i -> dialogInterface.dismiss() }
+      .setTitle("ColorPicker Dialog")
+      .setPreferenceName("Test")
+      .setPositiveButton(
+        getString(R.string.confirm),
+        ColorEnvelopeListener { envelope, _ -> setLayoutColor(envelope) })
+      .setNegativeButton(
+        getString(R.string.cancel)
+      ) { dialogInterface, i -> dialogInterface.dismiss() }
     builder.show()
   }
 

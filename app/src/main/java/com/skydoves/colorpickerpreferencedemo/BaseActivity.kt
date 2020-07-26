@@ -30,7 +30,7 @@ import androidx.preference.PreferenceManager
 @SuppressLint("Registered")
 open class BaseActivity : AppCompatActivity() {
 
-  private var sharedPreferences: SharedPreferences? = null
+  private lateinit var sharedPreferences: SharedPreferences
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -56,7 +56,7 @@ open class BaseActivity : AppCompatActivity() {
   private fun setToolbarColor() {
     val toolbar = findViewById<Toolbar>(R.id.toolbar)
     toolbar.setBackgroundColor(
-      sharedPreferences!!.getInt(
+      sharedPreferences.getInt(
         getString(R.string.ToolbarColorPickerPreference),
         ContextCompat.getColor(baseContext, R.color.colorPrimary)))
   }
@@ -65,7 +65,7 @@ open class BaseActivity : AppCompatActivity() {
   private fun setBackgroundColor() {
     val view = findViewById<View>(R.id.layout_background)
     view?.setBackgroundColor(
-      sharedPreferences!!.getInt(
+      sharedPreferences.getInt(
         getString(R.string.BackgroundColorPickerPreference),
         ContextCompat.getColor(baseContext, R.color.background)))
   }

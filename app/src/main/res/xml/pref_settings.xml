@@ -19,6 +19,8 @@
     android:title="Toolbar Color"
     app:default_color="@color/colorPrimary"
     app:iconSpaceReserved="false"
+    app:preference_attachAlphaSlideBar="false"
+    app:preference_attachBrightnessSlideBar="true"
     app:preference_dialog_negative="@string/cancel"
     app:preference_dialog_positive="@string/confirm"
     app:preference_dialog_title="Toolbar ColorPickerDialog"

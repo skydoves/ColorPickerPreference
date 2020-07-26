@@ -31,11 +31,15 @@ import com.skydoves.colorpickerview.ColorPickerDialog
 import com.skydoves.colorpickerview.ColorPickerView
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 
+/**
+ * ColorPickerPreference is a preference for persisting a chosen color by users.
+ * We can show a [ColorPickerDialog] and customize the dialog and [ColorPickerView].
+ */
 class ColorPickerPreference : Preference {
 
   private lateinit var colorBox: View
   private lateinit var preferenceDialog: AlertDialog
-  private lateinit var colorPickerView: ColorPickerView
+  private lateinit var preferenceColorPickerView: ColorPickerView
 
   private var defaultColor: Int = Color.BLACK
   private var paletteDrawable: Drawable? = null
@@ -86,14 +90,6 @@ class ColorPickerPreference : Preference {
         isAttachBrightnessSlideBar)
   }
 
-  fun getPreferenceDialog(): AlertDialog {
-    return this.preferenceDialog
-  }
-
-  fun getColorPickerView(): ColorPickerView {
-    return colorPickerView
-  }
-
   private fun onInit() {
     widgetLayoutResource = R.layout.layout_colorpicker_preference
     preferenceDialog = ColorPickerDialog.Builder(context).apply {
@@ -110,7 +106,7 @@ class ColorPickerPreference : Preference {
       setNegativeButton(negative) { dialogInterface, _ -> dialogInterface.dismiss() }
       attachAlphaSlideBar(isAttachAlphaSlideBar)
       attachBrightnessSlideBar(isAttachBrightnessSlideBar)
-      this@ColorPickerPreference.colorPickerView = this.colorPickerView.apply {
+      this@ColorPickerPreference.preferenceColorPickerView = this.colorPickerView.apply {
         paletteDrawable?.let { setPaletteDrawable(it) }
         selectorDrawable?.let { setSelectorDrawable(it) }
         preferenceName = key
@@ -120,7 +116,7 @@ class ColorPickerPreference : Preference {
 
   override fun onBindViewHolder(holder: PreferenceViewHolder) {
     super.onBindViewHolder(holder)
-    colorBox = holder.findViewById(R.id.colorpicker_preference_colorbox)
+    colorBox = holder.findViewById(R.id.preference_colorBox)
     if (key != null) {
       colorBox.setBackgroundColor(
         preferenceManager.sharedPreferences.getInt(key, defaultColor))
@@ -133,4 +129,10 @@ class ColorPickerPreference : Preference {
     super.onClick()
     preferenceDialog.show()
   }
+
+  /** gets an [AlertDialog] that created by preferences. */
+  fun getPreferenceDialog(): AlertDialog = preferenceDialog
+
+  /** gets a [ColorPickerView] that created by preferences. */
+  fun getColorPickerView(): ColorPickerView = preferenceColorPickerView
 }

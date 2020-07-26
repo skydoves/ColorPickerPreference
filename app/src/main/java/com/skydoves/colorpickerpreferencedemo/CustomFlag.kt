@@ -20,7 +20,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import android.widget.TextView
-
 import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.colorpickerview.flag.FlagView
 

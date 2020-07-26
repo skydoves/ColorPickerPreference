@@ -2,14 +2,14 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
-  android:layout_height="wrap_content"
-  android:orientation="horizontal">
+  android:layout_height="wrap_content">
 
   <LinearLayout
-    android:id="@+id/colorpicker_preference_colorbox"
+    android:id="@+id/preference_colorBox"
     android:layout_width="36dp"
     android:layout_height="36dp"
     android:layout_gravity="end|center_vertical"
     android:orientation="vertical"
     tools:background="#000000" />
+
 </FrameLayout>
