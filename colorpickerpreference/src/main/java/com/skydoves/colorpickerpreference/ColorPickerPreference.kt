@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("unused")
+
 package com.skydoves.colorpickerpreference
 
 import android.content.Context
@@ -26,20 +28,23 @@ import androidx.appcompat.app.AlertDialog
 import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
 import com.skydoves.colorpickerview.ColorPickerDialog
+import com.skydoves.colorpickerview.ColorPickerView
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 
-@Suppress("unused")
 class ColorPickerPreference : Preference {
 
   private lateinit var colorBox: View
-  private lateinit var colorPickerDialogBuilder: ColorPickerDialog.Builder
-  private lateinit var alertDialog: AlertDialog
+  private lateinit var preferenceDialog: AlertDialog
+  private lateinit var colorPickerView: ColorPickerView
+
   private var defaultColor: Int = Color.BLACK
   private var paletteDrawable: Drawable? = null
   private var selectorDrawable: Drawable? = null
   private var title: String? = null
   private var positive: String? = null
   private var negative: String? = null
+  private var isAttachAlphaSlideBar = true
+  private var isAttachBrightnessSlideBar = true
 
   constructor(context: Context) : super(context)
 
@@ -48,7 +53,8 @@ class ColorPickerPreference : Preference {
     onInit()
   }
 
-  constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+  constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs,
+    defStyleAttr) {
     getAttrs(attrs, defStyleAttr)
     onInit()
   }
@@ -59,13 +65,38 @@ class ColorPickerPreference : Preference {
   }
 
   private fun getAttrs(attrs: AttributeSet, defStyle: Int) {
-    val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ColorPickerPreference, defStyle, 0)
+    val typedArray =
+      context.obtainStyledAttributes(attrs, R.styleable.ColorPickerPreference, defStyle, 0)
     setTypeArray(typedArray)
   }
 
-  fun colorPickerDialogBuilder(builder: ColorPickerDialog.Builder) {
-    this.colorPickerDialogBuilder = builder
-    with(this.colorPickerDialogBuilder) {
+  private fun setTypeArray(typedArray: TypedArray) {
+    defaultColor =
+      typedArray.getColor(R.styleable.ColorPickerPreference_default_color, defaultColor)
+    paletteDrawable = typedArray.getDrawable(R.styleable.ColorPickerPreference_preference_palette)
+    selectorDrawable = typedArray.getDrawable(R.styleable.ColorPickerPreference_preference_selector)
+    title = typedArray.getString(R.styleable.ColorPickerPreference_preference_dialog_title)
+    positive = typedArray.getString(R.styleable.ColorPickerPreference_preference_dialog_positive)
+    negative = typedArray.getString(R.styleable.ColorPickerPreference_preference_dialog_negative)
+    isAttachAlphaSlideBar =
+      typedArray.getBoolean(R.styleable.ColorPickerPreference_preference_attachAlphaSlideBar,
+        isAttachAlphaSlideBar)
+    isAttachBrightnessSlideBar =
+      typedArray.getBoolean(R.styleable.ColorPickerPreference_preference_attachBrightnessSlideBar,
+        isAttachBrightnessSlideBar)
+  }
+
+  fun getPreferenceDialog(): AlertDialog {
+    return this.preferenceDialog
+  }
+
+  fun getColorPickerView(): ColorPickerView {
+    return colorPickerView
+  }
+
+  private fun onInit() {
+    widgetLayoutResource = R.layout.layout_colorpicker_preference
+    preferenceDialog = ColorPickerDialog.Builder(context).apply {
       setTitle(title)
       setPositiveButton(positive,
         ColorEnvelopeListener { envelope, _ ->
@@ -77,31 +108,14 @@ class ColorPickerPreference : Preference {
             .apply()
         })
       setNegativeButton(negative) { dialogInterface, _ -> dialogInterface.dismiss() }
-      with(colorPickerView) {
+      attachAlphaSlideBar(isAttachAlphaSlideBar)
+      attachBrightnessSlideBar(isAttachBrightnessSlideBar)
+      this@ColorPickerPreference.colorPickerView = this.colorPickerView.apply {
         paletteDrawable?.let { setPaletteDrawable(it) }
         selectorDrawable?.let { setSelectorDrawable(it) }
         preferenceName = key
       }
-    }
-    this.alertDialog = colorPickerDialogBuilder.create()
-  }
-
-  fun getDialogBuilder(): ColorPickerDialog.Builder {
-    return this.colorPickerDialogBuilder
-  }
-
-  private fun setTypeArray(typedArray: TypedArray) {
-    defaultColor = typedArray.getColor(R.styleable.ColorPickerPreference_default_color, defaultColor)
-    paletteDrawable = typedArray.getDrawable(R.styleable.ColorPickerPreference_preference_palette)
-    selectorDrawable = typedArray.getDrawable(R.styleable.ColorPickerPreference_preference_selector)
-    title = typedArray.getString(R.styleable.ColorPickerPreference_preference_dialog_title)
-    positive = typedArray.getString(R.styleable.ColorPickerPreference_preference_dialog_positive)
-    negative = typedArray.getString(R.styleable.ColorPickerPreference_preference_dialog_negative)
-  }
-
-  private fun onInit() {
-    widgetLayoutResource = R.layout.layout_colorpicker_preference
-    colorPickerDialogBuilder(ColorPickerDialog.Builder(context))
+    }.create()
   }
 
   override fun onBindViewHolder(holder: PreferenceViewHolder) {
@@ -117,6 +131,6 @@ class ColorPickerPreference : Preference {
 
   override fun onClick() {
     super.onClick()
-    this.alertDialog.show()
+    preferenceDialog.show()
   }
 }

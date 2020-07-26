@@ -7,5 +7,7 @@
     <attr name="preference_dialog_title" format="string" />
     <attr name="preference_dialog_positive" format="string" />
     <attr name="preference_dialog_negative" format="string" />
+    <attr name="preference_attachAlphaSlideBar" format="boolean" />
+    <attr name="preference_attachBrightnessSlideBar" format="boolean" />
   </declare-styleable>
 </resources>
