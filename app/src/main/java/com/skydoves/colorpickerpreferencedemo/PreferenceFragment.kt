@@ -17,9 +17,11 @@
 package com.skydoves.colorpickerpreferencedemo
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.preference.PreferenceFragmentCompat
 import com.skydoves.colorpickerpreference.ColorPickerPreference
 import com.skydoves.colorpickerview.ColorPickerDialog
+import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 
 class PreferenceFragment : PreferenceFragmentCompat() {
 
@@ -39,5 +41,8 @@ class PreferenceFragment : PreferenceFragmentCompat() {
     val colorPickerPreferenceBackground = findPreference<ColorPickerPreference>(
       requireContext().getString(R.string.BackgroundColorPickerPreference))
     colorPickerPreferenceBackground?.getColorPickerView()?.flagView = CustomFlag(requireContext(), R.layout.layout_flag)
+    colorPickerPreferenceBackground?.preferenceColorListener = ColorEnvelopeListener { envelope, _ ->
+      Toast.makeText(requireContext(), "background color: #${envelope.hexCode} is selected", Toast.LENGTH_SHORT).show()
+    }
   }
 }

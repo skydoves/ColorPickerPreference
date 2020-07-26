@@ -2,6 +2,8 @@
 <resources>
   <declare-styleable name="ColorPickerPreference">
     <attr name="default_color" format="color" />
+    <attr name="preference_colorBox" format="reference" />
+    <attr name="preference_colorBox_radius" format="dimension" />
     <attr name="preference_palette" format="reference" />
     <attr name="preference_selector" format="reference" />
     <attr name="preference_dialog_title" format="string" />
