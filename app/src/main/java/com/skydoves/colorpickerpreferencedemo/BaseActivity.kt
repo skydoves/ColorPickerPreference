@@ -16,7 +16,6 @@
 
 package com.skydoves.colorpickerpreferencedemo
 
-import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
@@ -27,7 +26,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 
-@SuppressLint("Registered")
 open class BaseActivity : AppCompatActivity() {
 
   private lateinit var sharedPreferences: SharedPreferences

@@ -82,7 +82,7 @@ class ColorPickerViewActivity : AppCompatActivity() {
   @SuppressLint("SetTextI18n")
   private fun setLayoutColor(envelope: ColorEnvelope) {
     val textView = findViewById<TextView>(R.id.textView)
-    textView.text = "#" + envelope.hexCode
+    textView.text = "#${envelope.hexCode}"
 
     val alphaTileView = findViewById<AlphaTileView>(R.id.alphaTileView)
     alphaTileView.setPaintColor(envelope.color)

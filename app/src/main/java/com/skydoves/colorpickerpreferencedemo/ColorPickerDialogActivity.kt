@@ -49,7 +49,7 @@ class ColorPickerDialogActivity : BaseActivity() {
   @SuppressLint("SetTextI18n")
   private fun setLayoutColor(envelope: ColorEnvelope) {
     val textView = findViewById<TextView>(R.id.textView)
-    textView.text = "#" + envelope.hexCode
+    textView.text = "#${envelope.hexCode}"
 
     val linearLayout = findViewById<LinearLayout>(R.id.linearLayout)
     linearLayout.setBackgroundColor(envelope.color)
