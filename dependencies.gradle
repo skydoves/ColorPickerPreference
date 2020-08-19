@@ -11,7 +11,7 @@ ext.versions = [
     kotlin             : '1.4.0',
     preference         : '1.1.1',
     annotation         : '1.0.2',
-    colorpickerView    : '2.1.7',
+    colorpickerView    : '2.1.8',
 
     // used for demo
     googleMaterial     : '1.3.0-alpha02',
