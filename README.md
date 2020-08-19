@@ -17,7 +17,7 @@ Could get HSV color, RGB values, Html color code from your gallery pictures or c
 #### build.gradle
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:colorpickerpreference:2.0.1"
+    implementation "com.github.skydoves:colorpickerpreference:2.0.2"
 }
 ```
 
@@ -164,12 +164,14 @@ ColorPickerPreference is used in PreferenceScreen and shows ColorPickerDialog if
     android:key="@string/ToolbarColorPickerPreference"
     android:title="Toolbar Color"
     android:summary="changes toolbar color"
-    app:preference_dialog_title="Toolbar ColorPickerDialog"
-    app:preference_dialog_positive="@string/confirm"
-    app:preference_dialog_negative="@string/cancel"
-    app:preference_palette="@drawable/palette"
-    app:preference_selector="@drawable/wheel"
-    app:default_color="@color/colorPrimary"/>
+    app:preference_attachAlphaSlideBar="false" // attach an alpha slide bar or not.
+    app:preference_attachBrightnessSlideBar="true" // attach a brightness slide bar or not.
+    app:preference_colorBox_radius="26dp" // radius of the color box. we can make it circular using this.
+    app:preference_dialog_negative="@string/cancel" // string for closing the dialog.
+    app:preference_dialog_positive="@string/confirm" // string for confirming the dialog.
+    app:preference_dialog_title="Toolbar ColorPickerDialog" // title string to the dialog.
+    app:preference_palette="@drawable/palettebar" // a palette drawable to the ColorPickerView.
+    app:preference_selector="@drawable/wheel" // a selector drawable to the ColorPickerView.
 ```
 
 #### customizing
