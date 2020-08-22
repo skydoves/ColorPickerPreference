@@ -18,7 +18,6 @@ package com.skydoves.colorpickerpreferencedemo
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
@@ -30,6 +29,8 @@ import androidx.core.content.ContextCompat
 import com.skydoves.colorpickerview.AlphaTileView
 import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.colorpickerview.ColorPickerDialog
+import com.skydoves.colorpickerview.flag.BubbleFlag
+import com.skydoves.colorpickerview.flag.FlagMode
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 import com.skydoves.colorpickerview.sliders.AlphaSlideBar
 import com.skydoves.colorpickerview.sliders.BrightnessSlideBar
@@ -64,6 +65,9 @@ class ColorPickerViewActivity : AppCompatActivity() {
     colorPickerView.setColorListener(
       ColorEnvelopeListener { envelope, _ -> setLayoutColor(envelope) })
 
+    // set a bubble flagView
+    colorPickerView.flagView = BubbleFlag(this).apply { flagMode = FlagMode.FADE }
+
     // attach alphaSlideBar
     val alphaSlideBar = findViewById<AlphaSlideBar>(R.id.alphaSlideBar)
     colorPickerView.attachAlphaSlider(alphaSlideBar)
@@ -95,10 +99,11 @@ class ColorPickerViewActivity : AppCompatActivity() {
 
   /** changes palette image using drawable resource.  */
   private fun palette() {
-    if (flagPalette)
+    if (flagPalette) {
       colorPickerView.setPaletteDrawable(ContextCompat.getDrawable(this, R.drawable.palette)!!)
-    else
+    } else {
       colorPickerView.setPaletteDrawable(ContextCompat.getDrawable(this, R.drawable.palettebar)!!)
+    }
     flagPalette = !flagPalette
   }
 
@@ -111,16 +116,17 @@ class ColorPickerViewActivity : AppCompatActivity() {
 
   /** changes selector image using drawable resource.  */
   private fun selector() {
-    if (flagSelector)
+    if (flagSelector) {
       colorPickerView.setSelectorDrawable(ContextCompat.getDrawable(this, R.drawable.wheel)!!)
-    else
+    } else {
       colorPickerView.setSelectorDrawable(ContextCompat.getDrawable(this, R.drawable.wheel_dark)!!)
+    }
     flagSelector = !flagSelector
   }
 
   /** shows ColorPickerDialog  */
   private fun dialog() {
-    val builder = ColorPickerDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
+    val builder = ColorPickerDialog.Builder(this)
       .setTitle("ColorPicker Dialog")
       .setPreferenceName("Test")
       .setPositiveButton(

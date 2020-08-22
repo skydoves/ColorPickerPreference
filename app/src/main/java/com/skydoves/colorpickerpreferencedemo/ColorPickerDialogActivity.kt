@@ -23,6 +23,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.colorpickerview.ColorPickerDialog
+import com.skydoves.colorpickerview.flag.BubbleFlag
+import com.skydoves.colorpickerview.flag.FlagMode
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 
 class ColorPickerDialogActivity : BaseActivity() {
@@ -43,6 +45,7 @@ class ColorPickerDialogActivity : BaseActivity() {
       .setNegativeButton(
         getString(R.string.cancel)
       ) { dialogInterface, i -> dialogInterface.dismiss() }
+    builder.colorPickerView.flagView = BubbleFlag(this).apply { flagMode = FlagMode.FADE }
     builder.show()
   }
 

@@ -42,7 +42,7 @@ class CustomFlag(context: Context, layout: Int) : FlagView(context, layout) {
    */
   @SuppressLint("SetTextI18n")
   override fun onRefresh(colorEnvelope: ColorEnvelope) {
-    textView.text = "#" + colorEnvelope.hexCode
+    textView.text = "#${colorEnvelope.hexCode}"
     view.setBackgroundColor(colorEnvelope.color)
   }
 }

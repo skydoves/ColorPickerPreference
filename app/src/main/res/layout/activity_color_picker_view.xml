@@ -24,7 +24,7 @@
         android:layout_marginRight="10dp"
         android:onClick="overflowMenu"
         android:src="@drawable/ic_list_white_24dp"
-        android:tint="@android:color/white"
+        app:tint="@android:color/white"
         tools:ignore="ContentDescription" />
 
       <TextView

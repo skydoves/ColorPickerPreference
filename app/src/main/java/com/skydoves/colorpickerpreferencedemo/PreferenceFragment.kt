@@ -21,6 +21,8 @@ import android.widget.Toast
 import androidx.preference.PreferenceFragmentCompat
 import com.skydoves.colorpickerpreference.ColorPickerPreference
 import com.skydoves.colorpickerview.ColorPickerDialog
+import com.skydoves.colorpickerview.flag.BubbleFlag
+import com.skydoves.colorpickerview.flag.FlagMode
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
 
 class PreferenceFragment : PreferenceFragmentCompat() {
@@ -36,7 +38,7 @@ class PreferenceFragment : PreferenceFragmentCompat() {
     val colorPickerPreferenceToolbar = findPreference<ColorPickerPreference>(
       requireContext().getString(R.string.ToolbarColorPickerPreference))
     val colorPickerView = colorPickerPreferenceToolbar?.getColorPickerView()
-    colorPickerView?.flagView = CustomFlag(requireContext(), R.layout.layout_flag)
+    colorPickerView?.flagView = BubbleFlag(requireContext()).apply { flagMode = FlagMode.FADE }
 
     val colorPickerPreferenceBackground = findPreference<ColorPickerPreference>(
       requireContext().getString(R.string.BackgroundColorPickerPreference))
