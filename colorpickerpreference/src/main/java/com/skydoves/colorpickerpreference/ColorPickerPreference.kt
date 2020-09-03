@@ -129,8 +129,8 @@ class ColorPickerPreference : Preference {
       this@ColorPickerPreference.preferenceColorPickerView = this.colorPickerView.apply {
         paletteDrawable?.let { setPaletteDrawable(it) }
         selectorDrawable?.let { setSelectorDrawable(it) }
-        setInitialColor(defaultColor)
         preferenceName = key
+        setInitialColor(defaultColor)
       }
     }.create()
   }
