@@ -56,7 +56,9 @@ open class BaseActivity : AppCompatActivity() {
     toolbar.setBackgroundColor(
       sharedPreferences.getInt(
         getString(R.string.ToolbarColorPickerPreference),
-        ContextCompat.getColor(baseContext, R.color.colorPrimary)))
+        ContextCompat.getColor(baseContext, R.color.colorPrimary)
+      )
+    )
   }
 
   /** set background color from DefaultSharedPreferences(PreferenceScreen)  */
@@ -65,6 +67,8 @@ open class BaseActivity : AppCompatActivity() {
     view?.setBackgroundColor(
       sharedPreferences.getInt(
         getString(R.string.BackgroundColorPickerPreference),
-        ContextCompat.getColor(baseContext, R.color.background)))
+        ContextCompat.getColor(baseContext, R.color.background)
+      )
+    )
   }
 }

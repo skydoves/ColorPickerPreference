@@ -37,8 +37,8 @@ import com.skydoves.colorpickerview.sliders.BrightnessSlideBar
 import com.skydoves.powermenu.OnMenuItemClickListener
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
-import java.io.FileNotFoundException
 import kotlinx.android.synthetic.main.activity_color_picker_view.*
+import java.io.FileNotFoundException
 
 class ColorPickerViewActivity : AppCompatActivity() {
 
@@ -63,7 +63,8 @@ class ColorPickerViewActivity : AppCompatActivity() {
     setContentView(R.layout.activity_color_picker_view)
 
     colorPickerView.setColorListener(
-      ColorEnvelopeListener { envelope, _ -> setLayoutColor(envelope) })
+      ColorEnvelopeListener { envelope, _ -> setLayoutColor(envelope) }
+    )
 
     // set a bubble flagView
     colorPickerView.flagView = BubbleFlag(this).apply { flagMode = FlagMode.FADE }
@@ -131,7 +132,8 @@ class ColorPickerViewActivity : AppCompatActivity() {
       .setPreferenceName("Test")
       .setPositiveButton(
         getString(R.string.confirm),
-        ColorEnvelopeListener { envelope, _ -> setLayoutColor(envelope) })
+        ColorEnvelopeListener { envelope, _ -> setLayoutColor(envelope) }
+      )
       .setNegativeButton(
         getString(R.string.cancel)
       ) { dialogInterface, _ -> dialogInterface.dismiss() }

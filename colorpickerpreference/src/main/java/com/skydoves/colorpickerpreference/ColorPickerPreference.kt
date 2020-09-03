@@ -63,8 +63,11 @@ class ColorPickerPreference : Preference {
     onInit()
   }
 
-  constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs,
-    defStyleAttr) {
+  constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
+    context,
+    attrs,
+    defStyleAttr
+  ) {
     getAttrs(attrs, defStyleAttr)
     onInit()
   }
@@ -91,18 +94,23 @@ class ColorPickerPreference : Preference {
     positive = typedArray.getString(R.styleable.ColorPickerPreference_preference_dialog_positive)
     negative = typedArray.getString(R.styleable.ColorPickerPreference_preference_dialog_negative)
     isAttachAlphaSlideBar =
-      typedArray.getBoolean(R.styleable.ColorPickerPreference_preference_attachAlphaSlideBar,
-        isAttachAlphaSlideBar)
+      typedArray.getBoolean(
+        R.styleable.ColorPickerPreference_preference_attachAlphaSlideBar,
+        isAttachAlphaSlideBar
+      )
     isAttachBrightnessSlideBar =
-      typedArray.getBoolean(R.styleable.ColorPickerPreference_preference_attachBrightnessSlideBar,
-        isAttachBrightnessSlideBar)
+      typedArray.getBoolean(
+        R.styleable.ColorPickerPreference_preference_attachBrightnessSlideBar,
+        isAttachBrightnessSlideBar
+      )
   }
 
   private fun onInit() {
     widgetLayoutResource = R.layout.layout_colorpicker_preference
     preferenceDialog = ColorPickerDialog.Builder(context).apply {
       setTitle(title)
-      setPositiveButton(positive,
+      setPositiveButton(
+        positive,
         ColorEnvelopeListener { envelope, _ ->
           if (colorBox.background is GradientDrawable) {
             (colorBox.background as GradientDrawable).setColor(envelope.color)
@@ -113,7 +121,8 @@ class ColorPickerPreference : Preference {
               .putInt(key, envelope.color)
               .apply()
           }
-        })
+        }
+      )
       setNegativeButton(negative) { dialogInterface, _ -> dialogInterface.dismiss() }
       attachAlphaSlideBar(isAttachAlphaSlideBar)
       attachBrightnessSlideBar(isAttachBrightnessSlideBar)
@@ -140,11 +149,13 @@ class ColorPickerPreference : Preference {
     colorBox = holder.findViewById(R.id.preference_colorBox)
     colorBox.background = GradientDrawable().apply {
       cornerRadius = this@ColorPickerPreference.cornerRadius.toFloat()
-      setColor(if (key == null) {
-        this@ColorPickerPreference.defaultColor
-      } else {
-        preferenceManager.sharedPreferences.getInt(key, this@ColorPickerPreference.defaultColor)
-      })
+      setColor(
+        if (key == null) {
+          this@ColorPickerPreference.defaultColor
+        } else {
+          preferenceManager.sharedPreferences.getInt(key, this@ColorPickerPreference.defaultColor)
+        }
+      )
     }
   }
 

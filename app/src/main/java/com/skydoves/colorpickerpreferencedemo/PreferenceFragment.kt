@@ -36,12 +36,14 @@ class PreferenceFragment : PreferenceFragmentCompat() {
   private fun initColorPickerPreference() {
     /** sets custom flag to the color picker. */
     val colorPickerPreferenceToolbar = findPreference<ColorPickerPreference>(
-      requireContext().getString(R.string.ToolbarColorPickerPreference))
+      requireContext().getString(R.string.ToolbarColorPickerPreference)
+    )
     val colorPickerView = colorPickerPreferenceToolbar?.getColorPickerView()
     colorPickerView?.flagView = BubbleFlag(requireContext()).apply { flagMode = FlagMode.FADE }
 
     val colorPickerPreferenceBackground = findPreference<ColorPickerPreference>(
-      requireContext().getString(R.string.BackgroundColorPickerPreference))
+      requireContext().getString(R.string.BackgroundColorPickerPreference)
+    )
     colorPickerPreferenceBackground?.getColorPickerView()?.flagView = CustomFlag(requireContext(), R.layout.layout_flag)
     colorPickerPreferenceBackground?.preferenceColorListener = ColorEnvelopeListener { envelope, _ ->
       Toast.makeText(requireContext(), "background color: #${envelope.hexCode} is selected", Toast.LENGTH_SHORT).show()
