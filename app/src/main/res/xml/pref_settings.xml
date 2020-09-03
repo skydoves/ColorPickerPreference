@@ -37,11 +37,11 @@
     app:preference_dialog_negative="@string/cancel"
     app:preference_dialog_positive="@string/confirm"
     app:preference_dialog_title="Background ColorPickerDialog"
-    app:preference_palette="@drawable/palette"
     app:preference_selector="@drawable/wheel" />
 
   <androidx.preference.Preference
     android:summary="skydoves"
     android:title="GitHub"
     app:iconSpaceReserved="false" />
+
 </androidx.preference.PreferenceScreen>
