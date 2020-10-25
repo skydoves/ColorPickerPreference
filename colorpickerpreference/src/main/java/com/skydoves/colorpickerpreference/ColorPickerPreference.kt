@@ -74,13 +74,21 @@ class ColorPickerPreference : Preference {
 
   private fun getAttrs(attrs: AttributeSet) {
     val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ColorPickerPreference)
-    setTypeArray(typedArray)
+    try {
+      setTypeArray(typedArray)
+    } finally {
+      typedArray.recycle()
+    }
   }
 
   private fun getAttrs(attrs: AttributeSet, defStyle: Int) {
     val typedArray =
       context.obtainStyledAttributes(attrs, R.styleable.ColorPickerPreference, defStyle, 0)
-    setTypeArray(typedArray)
+    try {
+      setTypeArray(typedArray)
+    } finally {
+      typedArray.recycle()
+    }
   }
 
   private fun setTypeArray(typedArray: TypedArray) {
