@@ -19,5 +19,7 @@ dependencies {
     api "com.github.skydoves:colorpickerview:$versions.colorpickerView"
 }
 
+tasks.withType(Javadoc).all { enabled = false }
+
 apply from: '../spotless.gradle'
 

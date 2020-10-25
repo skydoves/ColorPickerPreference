@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply from: '../dependencies.gradle'
 
 android {
@@ -28,11 +28,6 @@ dependencies {
     implementation "androidx.preference:preference-ktx:$versions.preference"
     implementation "com.github.skydoves:powermenu:$versions.powerMenu"
     implementation project(":colorpickerpreference")
-}
-
-tasks.withType(Javadoc) {
-    excludes = ['**/*.kt']
-    options.addBooleanOption('Xdoclint:none', true)
 }
 
 apply from: '../spotless.gradle'

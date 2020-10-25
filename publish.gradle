@@ -4,7 +4,7 @@ apply from: '../dependencies.gradle'
 
 ext.repository = [
     name       : "colorpickerpreference",
-    description: " A library that lets you implement ColorPicker, ColorPickerDialog, ColorPickerPreference.",
+    description: "A library that lets you implement ColorPicker, ColorPickerDialog, ColorPickerPreference.",
     websiteUrl : "https://github.com/skydoves/ColorPickerPreference",
     scm        : 'scm:git@github.com/skydoves/ColorPickerPreference.git'
 ]
