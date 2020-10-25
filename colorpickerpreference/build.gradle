@@ -15,7 +15,7 @@ android {
 
 dependencies {
     implementation "androidx.annotation:annotation:$versions.annotation"
-    implementation "androidx.preference:preference:$versions.preference"
+    implementation "androidx.preference:preference-ktx:$versions.preference"
     api "com.github.skydoves:colorpickerview:$versions.colorpickerView"
 }
 

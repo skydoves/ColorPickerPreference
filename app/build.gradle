@@ -25,7 +25,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
     implementation "com.google.android.material:material:$versions.googleMaterial"
     implementation "com.github.skydoves:elasticviews:$versions.elasticViews"
-    implementation "androidx.preference:preference:$versions.preference"
+    implementation "androidx.preference:preference-ktx:$versions.preference"
     implementation "com.github.skydoves:powermenu:$versions.powerMenu"
     implementation project(":colorpickerpreference")
 }
