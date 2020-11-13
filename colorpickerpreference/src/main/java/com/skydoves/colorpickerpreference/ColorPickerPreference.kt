@@ -26,6 +26,7 @@ import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.edit
 import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
 import com.skydoves.colorpickerview.ColorEnvelope
@@ -124,10 +125,9 @@ class ColorPickerPreference : Preference {
             (colorBox.background as GradientDrawable).setColor(envelope.color)
             notifyColorChanged(envelope)
             preferenceManager
-              .sharedPreferences
-              .edit()
-              .putInt(key, envelope.color)
-              .apply()
+              .sharedPreferences.edit {
+                putInt(key, envelope.color)
+              }
           }
         }
       )
