@@ -19,7 +19,7 @@ Could get HSV color, RGB values, Html color code from your gallery pictures or c
 #### build.gradle
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:colorpickerpreference:2.0.4"
+    implementation "com.github.skydoves:colorpickerpreference:2.0.5"
 }
 ```
 
