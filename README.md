@@ -15,7 +15,16 @@ Could get HSV color, RGB values, Html color code from your gallery pictures or c
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/colorpickerpreference.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22colorpickerpreference%22)
 [![Jitpack](https://jitpack.io/v/skydoves/ColorPickerPreference.svg)](https://jitpack.io/#skydoves/ColorPickerPreference)
 
-#### build.gradle
+#### Gradle
+Add below codes to your **root** `build.gradle` file (not your module build.gradle file).
+```gradle
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+```
+And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
     implementation "com.github.skydoves:colorpickerpreference:2.0.5"
