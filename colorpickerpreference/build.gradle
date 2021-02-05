@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply from: '../publish.gradle'
 apply from: '../dependencies.gradle'
 
 android {
@@ -22,7 +21,5 @@ dependencies {
     api "com.github.skydoves:colorpickerview:$versions.colorpickerView"
 }
 
-tasks.withType(Javadoc).all { enabled = false }
-
+apply plugin: "com.vanniktech.maven.publish"
 apply from: '../spotless.gradle'
-

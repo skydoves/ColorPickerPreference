@@ -26,6 +26,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.skydoves.colorpickerpreferencedemo.databinding.ActivityColorPickerViewBinding
 import com.skydoves.colorpickerview.AlphaTileView
 import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.colorpickerview.ColorPickerDialog
@@ -37,7 +38,6 @@ import com.skydoves.colorpickerview.sliders.BrightnessSlideBar
 import com.skydoves.powermenu.OnMenuItemClickListener
 import com.skydoves.powermenu.PowerMenu
 import com.skydoves.powermenu.PowerMenuItem
-import kotlinx.android.synthetic.main.activity_color_picker_view.*
 import java.io.FileNotFoundException
 
 class ColorPickerViewActivity : AppCompatActivity() {
@@ -58,25 +58,31 @@ class ColorPickerViewActivity : AppCompatActivity() {
     powerMenu.dismiss()
   }
 
+  private lateinit var binding: ActivityColorPickerViewBinding
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_color_picker_view)
 
-    colorPickerView.setColorListener(
-      ColorEnvelopeListener { envelope, _ -> setLayoutColor(envelope) }
-    )
+    binding = ActivityColorPickerViewBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
-    // set a bubble flagView
-    colorPickerView.flagView = BubbleFlag(this).apply { flagMode = FlagMode.FADE }
+    with(binding) {
+      colorPickerView.setColorListener(
+        ColorEnvelopeListener { envelope, _ -> setLayoutColor(envelope) }
+      )
 
-    // attach alphaSlideBar
-    val alphaSlideBar = findViewById<AlphaSlideBar>(R.id.alphaSlideBar)
-    colorPickerView.attachAlphaSlider(alphaSlideBar)
+      // set a bubble flagView
+      colorPickerView.flagView = BubbleFlag(this@ColorPickerViewActivity).apply { flagMode = FlagMode.FADE }
 
-    // attach brightnessSlideBar
-    val brightnessSlideBar = findViewById<BrightnessSlideBar>(R.id.brightnessSlide)
-    colorPickerView.attachBrightnessSlider(brightnessSlideBar)
-    colorPickerView.setLifecycleOwner(this)
+      // attach alphaSlideBar
+      val alphaSlideBar = findViewById<AlphaSlideBar>(R.id.alphaSlideBar)
+      colorPickerView.attachAlphaSlider(alphaSlideBar)
+
+      // attach brightnessSlideBar
+      val brightnessSlideBar = findViewById<BrightnessSlideBar>(R.id.brightnessSlide)
+      colorPickerView.attachBrightnessSlider(brightnessSlideBar)
+      colorPickerView.setLifecycleOwner(this@ColorPickerViewActivity)
+    }
   }
 
   /**
@@ -101,9 +107,9 @@ class ColorPickerViewActivity : AppCompatActivity() {
   /** changes palette image using drawable resource.  */
   private fun palette() {
     if (flagPalette) {
-      colorPickerView.setPaletteDrawable(ContextCompat.getDrawable(this, R.drawable.palette)!!)
+      binding.colorPickerView.setPaletteDrawable(ContextCompat.getDrawable(this, R.drawable.palette)!!)
     } else {
-      colorPickerView.setPaletteDrawable(ContextCompat.getDrawable(this, R.drawable.palettebar)!!)
+      binding.colorPickerView.setPaletteDrawable(ContextCompat.getDrawable(this, R.drawable.palettebar)!!)
     }
     flagPalette = !flagPalette
   }
@@ -118,9 +124,9 @@ class ColorPickerViewActivity : AppCompatActivity() {
   /** changes selector image using drawable resource.  */
   private fun selector() {
     if (flagSelector) {
-      colorPickerView.setSelectorDrawable(ContextCompat.getDrawable(this, R.drawable.wheel)!!)
+      binding.colorPickerView.setSelectorDrawable(ContextCompat.getDrawable(this, R.drawable.wheel)!!)
     } else {
-      colorPickerView.setSelectorDrawable(ContextCompat.getDrawable(this, R.drawable.wheel_dark)!!)
+      binding.colorPickerView.setSelectorDrawable(ContextCompat.getDrawable(this, R.drawable.wheel_dark)!!)
     }
     flagSelector = !flagSelector
   }
@@ -152,7 +158,7 @@ class ColorPickerViewActivity : AppCompatActivity() {
         val imageStream = contentResolver.openInputStream(imageUri!!)
         val selectedImage = BitmapFactory.decodeStream(imageStream)
         val drawable = BitmapDrawable(resources, selectedImage)
-        colorPickerView.setPaletteDrawable(drawable)
+        binding.colorPickerView.setPaletteDrawable(drawable)
       } catch (e: FileNotFoundException) {
         e.printStackTrace()
       }
