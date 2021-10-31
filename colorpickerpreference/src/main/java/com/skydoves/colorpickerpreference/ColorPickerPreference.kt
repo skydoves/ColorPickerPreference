@@ -51,11 +51,11 @@ class ColorPickerPreference : Preference {
   var cornerRadius: Int = 0
   var paletteDrawable: Drawable? = null
   var selectorDrawable: Drawable? = null
-  var title: String? = null
+  var dialogTitle: String? = null
   var positive: String? = null
   var negative: String? = null
-  var isAttachAlphaSlideBar = true
-  var isAttachBrightnessSlideBar = true
+  var attachAlphaSlideBar = true
+  var attachBrightnessSlideBar = true
 
   constructor(context: Context) : super(context)
 
@@ -99,25 +99,25 @@ class ColorPickerPreference : Preference {
       typedArray.getDimensionPixelSize(R.styleable.ColorPickerPreference_preference_colorBox_radius, cornerRadius)
     paletteDrawable = typedArray.getDrawable(R.styleable.ColorPickerPreference_preference_palette)
     selectorDrawable = typedArray.getDrawable(R.styleable.ColorPickerPreference_preference_selector)
-    title = typedArray.getString(R.styleable.ColorPickerPreference_preference_dialog_title)
+    dialogTitle = typedArray.getString(R.styleable.ColorPickerPreference_preference_dialog_title)
     positive = typedArray.getString(R.styleable.ColorPickerPreference_preference_dialog_positive)
     negative = typedArray.getString(R.styleable.ColorPickerPreference_preference_dialog_negative)
-    isAttachAlphaSlideBar =
+    attachAlphaSlideBar =
       typedArray.getBoolean(
         R.styleable.ColorPickerPreference_preference_attachAlphaSlideBar,
-        isAttachAlphaSlideBar
+        attachAlphaSlideBar
       )
-    isAttachBrightnessSlideBar =
+    attachBrightnessSlideBar =
       typedArray.getBoolean(
         R.styleable.ColorPickerPreference_preference_attachBrightnessSlideBar,
-        isAttachBrightnessSlideBar
+        attachBrightnessSlideBar
       )
   }
 
   private fun onInit() {
     widgetLayoutResource = R.layout.layout_colorpicker_preference
     preferenceDialog = ColorPickerDialog.Builder(context).apply {
-      setTitle(title)
+      setTitle(dialogTitle)
       setPositiveButton(
         positive,
         ColorEnvelopeListener { envelope, _ ->
@@ -132,8 +132,8 @@ class ColorPickerPreference : Preference {
         }
       )
       setNegativeButton(negative) { dialogInterface, _ -> dialogInterface.dismiss() }
-      attachAlphaSlideBar(isAttachAlphaSlideBar)
-      attachBrightnessSlideBar(isAttachBrightnessSlideBar)
+      attachAlphaSlideBar(attachAlphaSlideBar)
+      attachBrightnessSlideBar(attachBrightnessSlideBar)
       this@ColorPickerPreference.preferenceColorPickerView = this.colorPickerView.apply {
         paletteDrawable?.let { setPaletteDrawable(it) }
         selectorDrawable?.let { setSelectorDrawable(it) }
