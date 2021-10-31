@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-@file:Suppress("unused")
+@file:Suppress("unused", "MemberVisibilityCanBePrivate")
 
 package com.skydoves.colorpickerpreference
 
@@ -47,15 +47,15 @@ class ColorPickerPreference : Preference {
   private lateinit var preferenceColorPickerView: ColorPickerView
   var preferenceColorListener: ColorPickerViewListener? = null
 
-  private var defaultColor: Int = Color.BLACK
-  private var cornerRadius: Int = 0
-  private var paletteDrawable: Drawable? = null
-  private var selectorDrawable: Drawable? = null
-  private var title: String? = null
-  private var positive: String? = null
-  private var negative: String? = null
-  private var isAttachAlphaSlideBar = true
-  private var isAttachBrightnessSlideBar = true
+  var defaultColor: Int = Color.BLACK
+  var cornerRadius: Int = 0
+  var paletteDrawable: Drawable? = null
+  var selectorDrawable: Drawable? = null
+  var title: String? = null
+  var positive: String? = null
+  var negative: String? = null
+  var isAttachAlphaSlideBar = true
+  var isAttachBrightnessSlideBar = true
 
   constructor(context: Context) : super(context)
 
