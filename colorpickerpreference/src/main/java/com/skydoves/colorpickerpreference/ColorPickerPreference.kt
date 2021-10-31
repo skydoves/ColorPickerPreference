@@ -114,7 +114,7 @@ class ColorPickerPreference : Preference {
       )
   }
 
-  private fun onInit() {
+  fun onInit() {
     widgetLayoutResource = R.layout.layout_colorpicker_preference
     preferenceDialog = ColorPickerDialog.Builder(context).apply {
       setTitle(dialogTitle)
