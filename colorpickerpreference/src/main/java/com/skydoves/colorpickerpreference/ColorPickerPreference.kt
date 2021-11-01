@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-@file:Suppress("unused")
+@file:Suppress("unused", "MemberVisibilityCanBePrivate")
 
 package com.skydoves.colorpickerpreference
 
@@ -47,15 +47,15 @@ class ColorPickerPreference : Preference {
   private lateinit var preferenceColorPickerView: ColorPickerView
   var preferenceColorListener: ColorPickerViewListener? = null
 
-  private var defaultColor: Int = Color.BLACK
-  private var cornerRadius: Int = 0
-  private var paletteDrawable: Drawable? = null
-  private var selectorDrawable: Drawable? = null
-  private var title: String? = null
-  private var positive: String? = null
-  private var negative: String? = null
-  private var isAttachAlphaSlideBar = true
-  private var isAttachBrightnessSlideBar = true
+  var defaultColor: Int = Color.BLACK
+  var cornerRadius: Int = 0
+  var paletteDrawable: Drawable? = null
+  var selectorDrawable: Drawable? = null
+  var dialogTitle: String? = null
+  var positive: String? = null
+  var negative: String? = null
+  var attachAlphaSlideBar = true
+  var attachBrightnessSlideBar = true
 
   constructor(context: Context) : super(context)
 
@@ -99,25 +99,25 @@ class ColorPickerPreference : Preference {
       typedArray.getDimensionPixelSize(R.styleable.ColorPickerPreference_preference_colorBox_radius, cornerRadius)
     paletteDrawable = typedArray.getDrawable(R.styleable.ColorPickerPreference_preference_palette)
     selectorDrawable = typedArray.getDrawable(R.styleable.ColorPickerPreference_preference_selector)
-    title = typedArray.getString(R.styleable.ColorPickerPreference_preference_dialog_title)
+    dialogTitle = typedArray.getString(R.styleable.ColorPickerPreference_preference_dialog_title)
     positive = typedArray.getString(R.styleable.ColorPickerPreference_preference_dialog_positive)
     negative = typedArray.getString(R.styleable.ColorPickerPreference_preference_dialog_negative)
-    isAttachAlphaSlideBar =
+    attachAlphaSlideBar =
       typedArray.getBoolean(
         R.styleable.ColorPickerPreference_preference_attachAlphaSlideBar,
-        isAttachAlphaSlideBar
+        attachAlphaSlideBar
       )
-    isAttachBrightnessSlideBar =
+    attachBrightnessSlideBar =
       typedArray.getBoolean(
         R.styleable.ColorPickerPreference_preference_attachBrightnessSlideBar,
-        isAttachBrightnessSlideBar
+        attachBrightnessSlideBar
       )
   }
 
-  private fun onInit() {
+  fun onInit() {
     widgetLayoutResource = R.layout.layout_colorpicker_preference
     preferenceDialog = ColorPickerDialog.Builder(context).apply {
-      setTitle(title)
+      setTitle(dialogTitle)
       setPositiveButton(
         positive,
         ColorEnvelopeListener { envelope, _ ->
@@ -132,8 +132,8 @@ class ColorPickerPreference : Preference {
         }
       )
       setNegativeButton(negative) { dialogInterface, _ -> dialogInterface.dismiss() }
-      attachAlphaSlideBar(isAttachAlphaSlideBar)
-      attachBrightnessSlideBar(isAttachBrightnessSlideBar)
+      attachAlphaSlideBar(attachAlphaSlideBar)
+      attachBrightnessSlideBar(attachBrightnessSlideBar)
       this@ColorPickerPreference.preferenceColorPickerView = this.colorPickerView.apply {
         paletteDrawable?.let { setPaletteDrawable(it) }
         selectorDrawable?.let { setSelectorDrawable(it) }
