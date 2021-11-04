@@ -45,8 +45,8 @@ class ColorPickerPreference : Preference {
   private lateinit var colorBox: View
   private lateinit var preferenceDialog: AlertDialog
   private lateinit var preferenceColorPickerView: ColorPickerView
-  var preferenceColorListener: ColorPickerViewListener? = null
 
+  var preferenceColorListener: ColorPickerViewListener? = null
   var defaultColor: Int = Color.BLACK
   var cornerRadius: Int = 0
   var paletteDrawable: Drawable? = null
