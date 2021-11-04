@@ -27,7 +27,7 @@ allprojects {
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:colorpickerpreference:2.0.5"
+    implementation "com.github.skydoves:colorpickerpreference:2.0.6"
 }
 ```
 
